@@ -216,7 +216,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 38.879997, y: 19.686798}
+  m_Size: {x: 44.59, y: 22.73045}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -258,8 +258,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 38.879997, y: 19.686798}
-    newSize: {x: 38.879997, y: 19.686798}
+    oldSize: {x: 40.96, y: 20.48}
+    newSize: {x: 44.59, y: 22.73045}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -384,7 +384,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 33, y: 19}
+  m_Size: {x: 36, y: 19}
   m_EdgeRadius: 0
 --- !u!1 &527277900
 GameObject:
@@ -592,13 +592,13 @@ MonoBehaviour:
     - {fileID: 8693805369585761199, guid: bdc05ddbd93819d4dab7c8990b4e40b3, type: 3}
     - {fileID: 9024103919133991155, guid: 446df46903ad29145adec4c7c2973cf9, type: 3}
     parent: {fileID: 1690219009}
-    amount: 6
+    amount: 12
   bush:
     prefabs:
     - {fileID: 6683315699784595306, guid: 787962ea797ddee4f81d572cdd688924, type: 3}
     - {fileID: 8626796033127315438, guid: cf96bf0f2f380b14c8f7230f945e29f2, type: 3}
     parent: {fileID: 413797585}
-    amount: 6
+    amount: 12
 --- !u!1 &723884432
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +792,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 33, y: 19}
+  m_Size: {x: 36, y: 19}
   m_EdgeRadius: 0
 --- !u!4 &1108690809
 Transform:
@@ -937,7 +937,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 33, y: 19}
+  m_Size: {x: 36, y: 19}
   m_EdgeRadius: 0
 --- !u!114 &1494231817
 MonoBehaviour:

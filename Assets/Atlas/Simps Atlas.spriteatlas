@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Simps Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 63bb9140d4ef6b34ab4d918ca1ae9bf0, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1886aa40888f1cf4898bad2b0eb18fce, type: 3}
+  - {fileID: 21300000, guid: aad6ed014d299de49a0fda7eafc71f6d, type: 3}
+  - {fileID: 21300000, guid: 68784b31749315f44b1a911b479f152b, type: 3}
+  - {fileID: 21300000, guid: 13f2e741eebec2c4082a12f4e994c2c0, type: 3}
+  - {fileID: 21300000, guid: dec2d991adf6a154dbd15ba8695b36de, type: 3}
+  - {fileID: 21300000, guid: d94285d173824434f9d5a0f6b59fbc04, type: 3}
+  - {fileID: 21300000, guid: 7b0c1133dc22e3f47b17689df870c576, type: 3}
+  - {fileID: 21300000, guid: 124ac28367a11ea468514cca8facc13f, type: 3}
+  - {fileID: 21300000, guid: 699f005583bbc8945b4bc63b22f77b66, type: 3}
+  - {fileID: 21300000, guid: fe774e87df9fb074fae86353b3701a79, type: 3}
+  - {fileID: 21300000, guid: bd535f0839931314690ccbf7dbc46da2, type: 3}
+  - {fileID: 21300000, guid: e3ef4cb936f722945bc234b0a34937ed, type: 3}
+  - {fileID: 21300000, guid: 0c8ed70bd5c4b9147a9f5d057744c8fa, type: 3}
+  - {fileID: 21300000, guid: 284ab1cbf5427974f94a8e01b2ca0f9e, type: 3}
+  - {fileID: 21300000, guid: 5fea33cb2be178248bfdd438043bcdc7, type: 3}
+  - {fileID: 21300000, guid: c1ddff1cf871e704e8486571abbfcbb3, type: 3}
+  - {fileID: 21300000, guid: 9b09ce2dca2420d4bb9425790aec319d, type: 3}
+  - {fileID: 21300000, guid: 54668b7d33e243e4f9699e0a352a0eb9, type: 3}
+  - {fileID: 21300000, guid: 52c3789dbcadf0a4fbeea2730c25c0f7, type: 3}
+  - {fileID: 21300000, guid: a7eb2ccdaad1d7a44a82c74970c1c7b9, type: 3}
+  - {fileID: 21300000, guid: 93f3e47e380216148a224ee67107143a, type: 3}
+  - {fileID: 21300000, guid: 882333ee52b49dc4db88dde9bd8547cf, type: 3}
+  - {fileID: 21300000, guid: d93b52af60b3fe64d8f969d998a7c6bc, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - snake
+  - signal-orange
+  - eagle-vision
+  - signal-green
+  - action-radius-pattern
+  - leopard
+  - marker
+  - marker-alert-snake
+  - tree-1
+  - bush-1
+  - eagle
+  - monkey
+  - marker-alert-prey
+  - marker-alert-eagle
+  - escape-coordinate
+  - default-vision
+  - monkey-died
+  - tree-3
+  - tree-2
+  - marker-alert-leopard
+  - bush-2
+  - signal-red
+  - coordinate
+  m_Tag: Simps Atlas
+  m_IsVariant: 0
