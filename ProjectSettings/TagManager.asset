@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bounds
+  - Prey
+  - Land Predator
+  - Aerial Predator
+  - Crowling Predator
+  - Core
+  - Default Area
+  - Aerial Area
+  - Map
+  - Bush
+  - Tree
+  - Selector
+  - Spawner
+  - Action Radius
+  - Escape Coordinate
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Coordinates
+    uniqueID: 3326224273
+    locked: 0
+  - name: Bushes
+    uniqueID: 1666701049
+    locked: 0
+  - name: Trees
+    uniqueID: 2107593669
+    locked: 0
+  - name: Visions
+    uniqueID: 3073498025
+    locked: 0
+  - name: Signals
+    uniqueID: 2186612221
+    locked: 0
+  - name: CrowlingPredatorMarkers
+    uniqueID: 3186569819
+    locked: 0
+  - name: LandPredatorMarkers
+    uniqueID: 2242962313
+    locked: 0
+  - name: AerialPredatorMarkers
+    uniqueID: 249487947
+    locked: 0
+  - name: PreyMarkers
+    uniqueID: 1949500557
+    locked: 0
