@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 8961707277685885735}
   - component: {fileID: 2663186813164532613}
   - component: {fileID: 2663186813164532614}
+  - component: {fileID: 4198207536166645702}
   - component: {fileID: 2663186813505625223}
   - component: {fileID: 4628467491784176418}
   - component: {fileID: 4886190247039757366}
@@ -349,7 +350,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8667878059024202462}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae49df60c3792624bb6b6963f2ee6fc4, type: 3}
   m_Name: 
@@ -367,6 +368,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 10
+--- !u!114 &4198207536166645702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667878059024202462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8196508ade5eea4dadcbbb35bb10592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receptions: 0
 --- !u!114 &2663186813505625223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +826,7 @@ GameObject:
   - component: {fileID: 8667878060205241056}
   - component: {fileID: 6203123635643724375}
   - component: {fileID: 4785183459876227031}
+  - component: {fileID: 5425581917262435593}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Prey
@@ -886,3 +901,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   protectedAgainstAerialPredator: 0
   protectedAgainstLandPredator: 0
+--- !u!114 &5425581917262435593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667878060205241059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5639de8b0d77508439cacfaa791f1f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heardedAerialPredator: 0
+  heardedLandPredator: 0
+  heardedCrowlingPredator: 0
+  timeOfDangerMemory: 2

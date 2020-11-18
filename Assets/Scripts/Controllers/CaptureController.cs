@@ -18,7 +18,7 @@ namespace SIMPS
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.transform.CompareTag("Prey"))
+            if (collision.CompareTag("Prey"))
             {
                 if (thisAgent.IsHunting)
                 {

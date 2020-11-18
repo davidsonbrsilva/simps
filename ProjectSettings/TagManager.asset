@@ -19,6 +19,8 @@ TagManager:
   - Spawner
   - Action Radius
   - Escape Coordinate
+  - Signal
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -58,6 +60,9 @@ TagManager:
     locked: 0
   - name: Coordinates
     uniqueID: 3326224273
+    locked: 0
+  - name: Barriers
+    uniqueID: 1537791623
     locked: 0
   - name: Bushes
     uniqueID: 1666701049

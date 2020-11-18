@@ -22,7 +22,6 @@ namespace SIMPS
         private float halfHeight;
 
         private Vector3 oldPosition;
-        private Vector2 newPosition;
 
         // Methods
 

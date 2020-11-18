@@ -15,21 +15,20 @@ namespace SIMPS
         public bool IsAerialPredator { get; private set; }
         public bool IsCrowlingPredator { get; private set; }
         public bool IsPredator { get; private set; }
-        //public bool CanLearn { get { return Learner != null && Learner.enabled; } }
-        public bool CanLearn { get { return true; } }
+        public bool CanLearn { get { return Learner != null && Learner.enabled; } }
         public bool IsDead { get; private set; }
         public bool IsHunting { get; set; }
         public EmitterBehaviour Emitter { get; private set; }
         public ExplorerBehaviour Explorer { get; private set; }
         public HunterBehaviour Hunter { get; private set; }
-        //public Learner Learner { get; private set; }
-        //public Fearful Fearful { get; private set; }
+        public LearnerBehaviour Learner { get; private set; }
+        public FearfulBehaviour Fearful { get; private set; }
         //public Mortal Mortal { get; private set; }
         public VisionController Vision { get; private set; }
         public CaptureController Capture { get; private set; }
         public ProtectionController Protection { get; private set; }
-        //public HearingController Hearing { get; private set; }
-        //public EscapeController Escape { get; private set; }
+        public RecognitionController Hearing { get; private set; }
+        public ActionRadiusController ActionRadius { get; private set; }
 
         private Manager manager;
 
@@ -45,7 +44,7 @@ namespace SIMPS
 
             Transform agentVision = transform.Find("Rotatable").Find("Vision");
             Transform agentMarker = transform.Find("Rotatable").Find("Marker");
-            //Transform agentEscape = transform.Find("Escape");
+            Transform agentActionRadius = transform.Find("Action Radius");
 
             if (agentMarker.CompareTag("Prey"))
             {
@@ -70,16 +69,16 @@ namespace SIMPS
             if (IsPrey)
             {
                 Vision = agentVision.GetComponent<VisionController>();
-                //Hearing = agentMarker.GetComponent<HearingController>();
+                Hearing = agentMarker.GetComponent<RecognitionController>();
                 Protection = agentMarker.GetComponent<ProtectionController>();
-                //Escape = agentEscape.GetComponent<EscapeController>();
+                ActionRadius = agentActionRadius.GetComponent<ActionRadiusController>();
 
                 Emitter = GetComponent<EmitterBehaviour>();
                 Explorer = GetComponent<ExplorerBehaviour>();
                 Hunter = GetComponent<HunterBehaviour>();
-                //Learner = GetComponent<Learner>();
+                Learner = GetComponent<LearnerBehaviour>();
                 //Mortal = GetComponent<Mortal>();
-                //Fearful = GetComponent<Fearful>();
+                Fearful = GetComponent<FearfulBehaviour>();
             }
             else if (IsPredator)
             {
@@ -100,21 +99,6 @@ namespace SIMPS
             else if (Hunter && !Hunter.enabled && IsHunting)
             {
                 IsHunting = false;
-            }
-        }
-
-        // Este trecho foi colocado no método Start para que garantidamente o controlador do simulador tenha criado todos os objetos.
-        // Ao aidicioná-lo em Awake, IndexOutOfRangeException é encontrado.
-
-        public AgentController GetControllerOf(int agent, bool isPredator = true)
-        {
-            if (isPredator)
-            {
-                return manager.Predators[agent].GetComponent<AgentController>();
-            }
-            else
-            {
-                return manager.Preys[agent].GetComponent<AgentController>();
             }
         }
 

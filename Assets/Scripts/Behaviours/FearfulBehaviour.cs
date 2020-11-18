@@ -32,9 +32,12 @@ namespace SIMPS
 
         private void Update()
         {
+            var alertAgaintsAerialPredator = agent.Vision.SawAerialPredator || agent.Hearing.HeardAerialPredator;
+            var alertAgainstLandPredator = agent.Vision.SawLandPredator || agent.Hearing.HeardLandPredator;
+
             foreach (var escapeCoordinate in actionRadiusController.EscapeCoordinates)
             {
-                CalculateGrossValue(escapeCoordinate, agent.Vision.SawAerialPredator, agent.Vision.SawLandPredator);
+                CalculateGrossValue(escapeCoordinate, alertAgaintsAerialPredator, alertAgainstLandPredator);
             }
 
             foreach (var escapeCoordinate in actionRadiusController.EscapeCoordinates)
@@ -62,7 +65,7 @@ namespace SIMPS
             animator.SetBool("IsAlert", false);
         }
 
-        private void CalculateGrossValue(GameObject escapeCoordinate, bool sawAerialPredator, bool sawLandPredator)
+        private void CalculateGrossValue(GameObject escapeCoordinate, bool alertAgainstAerialPredator, bool alertAgainstLandPredator)
         {
             float sumPredatorsDistance = 0f;
             float sumBushesDistance = 0f;
@@ -73,7 +76,7 @@ namespace SIMPS
                 sumPredatorsDistance += Vector2.Distance(escapeCoordinate.transform.position, predator.transform.position);
             }
 
-            if (sawAerialPredator)
+            if (alertAgainstAerialPredator)
             {
                 foreach (var bush in spawner.Bushes)
                 {
@@ -81,7 +84,7 @@ namespace SIMPS
                 }
             }
 
-            if (sawLandPredator)
+            if (alertAgainstLandPredator)
             {
                 foreach (var tree in spawner.Trees)
                 {
