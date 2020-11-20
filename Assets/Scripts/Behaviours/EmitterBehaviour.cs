@@ -77,35 +77,20 @@ namespace SIMPS
         {
             Emitted = true;
             SeenPredator = indexOfSeenPredator;
-
-            //Debug.Log(indexOfSeenPredator);
-
             emissions++;
 
             GameObject signalInstance = Instantiate(signal.Prefabs[0], transform.position, Quaternion.identity, signalParent);
             SignalController signalController = signalInstance.GetComponent<SignalController>();
 
-            if (agent.CanLearn)
+            if (!agent.CanLearn || agent.Learner.Knowledgement[indexOfSeenPredator].Count == 0)
             {
-                //Debug.Log(agent.Learner.Knowledgement.Length);
-
-                if (agent.Learner.Knowledgement[indexOfSeenPredator].Count > 0)
-                {
-                    int choice = Random.Range(0, agent.Learner.Knowledgement[indexOfSeenPredator].Count);
-                    signalController.Symbol = agent.Learner.Knowledgement[indexOfSeenPredator][choice];
-                }
-                else
-                {
-                    // Obtém um símbolo aleatório para emitir.
-                    int randomSymbol = Random.Range(0, agent.Learner.AssociationValue.GetLength(0));
-                    agent.Learner.UpdateLearning(randomSymbol, indexOfSeenPredator);
-                    signalController.Symbol = randomSymbol;
-                }
+                int randomSymbol = Random.Range(0, agent.Learner.AssociationMemory.GetLength(0));
+                signalController.Symbol = randomSymbol;
             }
             else
             {
-                int randomSymbol = Random.Range(0, agent.Learner.AssociationValue.GetLength(0));
-                signalController.Symbol = randomSymbol;
+                int choice = Random.Range(0, agent.Learner.Knowledgement[indexOfSeenPredator].Count);
+                signalController.Symbol = agent.Learner.Knowledgement[indexOfSeenPredator][choice];
             }
             
             signalController.Sender = gameObject;

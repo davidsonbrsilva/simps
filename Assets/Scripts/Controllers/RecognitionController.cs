@@ -18,15 +18,17 @@ namespace SIMPS
         private float HeardedLandPredatorAt { get; set; }
         private float HeardedCrowlingPredatorAt { get; set; }
 
-        public SignalController Signal { get; private set; }
-        public bool IsHearingSomething { get; private set; }
+        public List<SignalController> Signals { get; private set; }
+        public bool IsHearingSomething { get { return Signals.Count > 0; } }
         public bool HeardAerialPredator { get { return heardedAerialPredator; } private set { heardedAerialPredator = value; } }
         public bool HeardLandPredator { get { return heardedLandPredator; } private set { heardedLandPredator = value; } }
         public bool HeardCrowlingPredator { get { return heardedCrowlingPredator; } private set { heardedCrowlingPredator = value; } }
         public bool HeardSomething { get { return HeardAerialPredator || HeardLandPredator || HeardCrowlingPredator; } }
+        public AgentController RecognizedPredator { get; private set; }
 
         private void Awake()
         {
+            Signals = new List<SignalController>();
             agent = transform.parent.parent.GetComponent<AgentController>();
             spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
 
@@ -43,29 +45,29 @@ namespace SIMPS
 
                 if (signalCollided.Sender != transform.parent.parent.gameObject)
                 {
+                    Signals.Add(collision.GetComponent<SignalController>());
                     var allRecognizedPredators = Recognize(signalCollided.Symbol);
 
                     if (allRecognizedPredators.Count > 0)
                     {
                         var recognizedPredator = allRecognizedPredators[Random.Range(0, allRecognizedPredators.Count)];
-                        var recognizedPredatorController = spawner.AllPredators[recognizedPredator].GetComponent<AgentController>();
+                        RecognizedPredator = spawner.AllPredators[recognizedPredator].GetComponent<AgentController>();
 
-                        if (recognizedPredatorController.IsAerialPredator)
+                        if (RecognizedPredator.IsAerialPredator)
                         {
                             HeardAerialPredator = true;
                         }
-                        else if (recognizedPredatorController.IsLandPredator)
+                        else if (RecognizedPredator.IsLandPredator)
                         {
                             HeardLandPredator = true;
                         }
-                        else if (recognizedPredatorController.IsCrowlingPredator)
+                        else if (RecognizedPredator.IsCrowlingPredator)
                         {
                             HeardCrowlingPredator = true;
                         }
 
-                        Signal = signalCollided;
-                        IsHearingSomething = true;
-                        Debug.Log("Ouviu alguma coisa.");
+                        //Signal = signalCollided;
+                        //IsHearingSomething = true;
                     }
                 }
             }
@@ -75,10 +77,17 @@ namespace SIMPS
         {
             if (collision.CompareTag("Signal"))
             {
-                if (IsHearingSomething)
+                var signalController = collision.GetComponent<SignalController>();
+
+                if (Signals.Contains(signalController))
+                {
+                    Signals.Remove(signalController);
+                }
+
+                /*if (IsHearingSomething)
                 {
                     IsHearingSomething = false;
-                }
+                }*/
             }
         }
 
@@ -123,6 +132,11 @@ namespace SIMPS
             HeardedAerialPredatorAt += Time.deltaTime;
             HeardedLandPredatorAt += Time.deltaTime;
             HeardedCrowlingPredatorAt += Time.deltaTime;
+
+            if (!HeardSomething)
+            {
+                RecognizedPredator = null;
+            }
         }
 
         /// <summary>

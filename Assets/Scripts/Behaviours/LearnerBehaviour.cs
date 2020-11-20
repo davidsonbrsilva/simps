@@ -9,17 +9,20 @@ namespace SIMPS
     public class LearnerBehaviour : MonoBehaviour
     {
         [SerializeField] private int receptions;
+        [SerializeField] private float timeUntilNextAssociation = 2f;
+        [SerializeField] private float weakenSmooth = 1;
 
         private Spawner spawner;
         private AgentController agent;
-        private SignalController lastHeardSignal;
+        //private SignalController lastHeardSignal;
 
-        public float[,] AssociationValue { get; private set; }
-        public int[,] NumberOfAssociations { get; private set; }
+        public float[,] AssociationMemory { get; private set; }
+        public float[,] Inibition { get; private set; }
+        //public int[,] NumberOfAssociations { get; private set; }
         public List<int>[] Knowledgement { get; private set; }
-        public int Receptions { get { return receptions; } set { receptions = value; } }
-        public bool Learned { get; private set; }
-        public int PredatorSeen { get; private set; }
+        //public int Receptions { get { return receptions; } set { receptions = value; } }
+        //public bool Learned { get; private set; }
+        //public int PredatorSeen { get; private set; }
 
         private void Awake()
         {
@@ -30,11 +33,11 @@ namespace SIMPS
 
         private void Start()
         {
-            AssociationValue = new float[spawner.Symbols, spawner.AllPredators.Count];
-            NumberOfAssociations = new int[spawner.Symbols, spawner.AllPredators.Count];
+            AssociationMemory = new float[spawner.Symbols, spawner.AllPredators.Count];
+            Inibition = new float[spawner.Symbols, spawner.AllPredators.Count];
+            //NumberOfAssociations = new int[spawner.Symbols, spawner.AllPredators.Count];
             Knowledgement = new List<int>[spawner.AllPredators.Count];
-            Debug.Log(Knowledgement.Length);
-            Receptions = 0;
+            //Receptions = 0;
 
             InitLearning();
             InitKnowledgement();
@@ -43,79 +46,93 @@ namespace SIMPS
 
         private void Update()
         {
-            /*if (Learned)
+            for (int symbol = 0; symbol < Inibition.GetLength(0); ++symbol)
             {
-                Learned = false;
-            }*/
+                for (int predator = 0; predator < Inibition.GetLength(1); ++predator)
+                {
+                    Inibition[symbol, predator] += Time.deltaTime;
+                }
+            }
 
-            
-            // Se ouviu alguma coisa.
-            if (agent.Hearing.IsHearingSomething)
+            for (int signal = 0; signal < agent.Hearing.Signals.Count; ++signal)
             {
-                Debug.Log("Teste2");
-                /*if (lastHeardSignal != agent.Hearing.Signal)
-                {*/
-                // Se está vendo alguém.
-                if (agent.Vision.IsSeeingPredator)
-                    {
-                    Debug.Log("Teste3");
-                    // Escolhe um predador aleatório dentre os vistos.
-                    int selected = Random.Range(0, agent.Vision.AllPredators.Count);
+                for (int predator = 0; predator < agent.Vision.AllPredators.Count; ++predator)
+                {
+                    Reinforce
+                    (
+                        agent.Hearing.Signals[signal].Symbol,
+                        spawner.AllPredators.IndexOf(agent.Vision.AllPredators[predator])
+                    );
+                    
+                }
+            }
 
-                        // Procura pelo índice global do predador escolhido no Simulador
-                        PredatorSeen = spawner.AllPredators.IndexOf(agent.Vision.AllPredators[selected]);
-
-                        // Atualiza tabela de aprendizado.
-                        UpdateLearning(agent.Hearing.Signal.Symbol, PredatorSeen);
-                        PrintAssociationValues();
-
-                        Receptions++;
-
-                        //Learned = true;
-                    }
-
-                    lastHeardSignal = agent.Hearing.Signal;
-                //}
+            for (int symbol = 0; symbol < spawner.Symbols; ++symbol)
+            {
+                for (int predator = 0; predator < spawner.AllPredators.Count; ++predator)
+                {
+                    Weaken(symbol, predator);
+                }
             }
         }
 
         public void InitLearning()
         {
-            for (int line = 0; line < AssociationValue.GetLength(0); ++line)
+            for (int line = 0; line < AssociationMemory.GetLength(0); ++line)
             {
-                for (int column = 0; column < AssociationValue.GetLength(1); ++column)
+                for (int column = 0; column < AssociationMemory.GetLength(1); ++column)
                 {
-                    AssociationValue[line, column] = 0.0f;
+                    AssociationMemory[line, column] = 0.0f;
                 }
             }
         }
 
         private void InitKnowledgement()
         {
-            for (int column = 0; column < AssociationValue.GetLength(1); column++)
+            for (int column = 0; column < AssociationMemory.GetLength(1); column++)
             {
                 Knowledgement[column] = new List<int>();
             }
         }
 
-        public void UpdateLearning(int symbol, int predator, bool punishment = false)
+        private void Reinforce(int symbol, int predator)
         {
-            if (!punishment)
+            if (Inibition[symbol, predator] >= timeUntilNextAssociation)
             {
-                NumberOfAssociations[symbol, predator] += 1;
-            }
-            else
-            {
-                NumberOfAssociations[symbol, predator] -= 1;
-            }
+                float biggest = 0f;
 
-            if (NumberOfAssociations[symbol, predator] < 0)
-            {
-                NumberOfAssociations[symbol, predator] = 0;
-            }
+                if (Knowledgement[predator].Count > 0)
+                {
+                    var choice = Random.Range(0, Knowledgement[predator].Count);
+                    var randomSymbol = Knowledgement[predator][choice];
+                    biggest = AssociationMemory[randomSymbol, predator];
+                }
 
-            AssociationValue[symbol, predator] = Sigmoide(NumberOfAssociations[symbol, predator]);
-            UpdateKnowledgement(predator);
+                AssociationMemory[symbol, predator] += AssociationMemory[symbol, predator] + 0.1f * (1f - (biggest - AssociationMemory[symbol, predator])) + 0.01f;
+                AssociationMemory[symbol, predator] = Mathf.Clamp(AssociationMemory[symbol, predator], 0f, 1f);
+                UpdateKnowledgement(predator);
+                Inibition[symbol, predator] = 0f;
+                PrintAssociationValues();
+            }
+        }
+
+        private void Weaken(int symbol, int predator)
+        {
+            if (Inibition[symbol, predator] >= timeUntilNextAssociation)
+            {
+                float biggest = 0f;
+
+                if (Knowledgement[predator].Count > 0)
+                {
+                    var choice = Random.Range(0, Knowledgement[predator].Count);
+                    var randomSymbol = Knowledgement[predator][choice];
+                    biggest = AssociationMemory[randomSymbol, predator];
+                }
+
+                AssociationMemory[symbol, predator] = (AssociationMemory[symbol, predator] - 0.1f * (biggest - AssociationMemory[symbol, predator]) - 0.01f) * Time.deltaTime * weakenSmooth;
+                AssociationMemory[symbol, predator] = Mathf.Clamp(AssociationMemory[symbol, predator], 0f, 1f);
+                UpdateKnowledgement(predator);
+            }
         }
 
         private void UpdateKnowledgement(int predator)
@@ -124,19 +141,19 @@ namespace SIMPS
             Knowledgement[predator].Clear();
 
             // Armazena o valor da primeira associação à variável "bigger".
-            float bigger = AssociationValue[0, predator];
+            float bigger = AssociationMemory[0, predator];
 
             // Adiciona o primeiro símbolo na base de conhecimento.
             Knowledgement[predator].Add(0);
 
             // Percorre todos os outros símbolos para descobrir o maior valor de associação.
-            for (int symbol = 1; symbol < AssociationValue.GetLength(0); symbol++)
+            for (int symbol = 1; symbol < AssociationMemory.GetLength(0); ++symbol)
             {
                 // Se encontrou valor maior...
-                if (AssociationValue[symbol, predator] > bigger)
+                if (AssociationMemory[symbol, predator] > bigger)
                 {
                     // Armazena o valor encontrado à variável "bigger".
-                    bigger = AssociationValue[symbol, predator];
+                    bigger = AssociationMemory[symbol, predator];
 
                     // Limpa a base de conhecimento.
                     Knowledgement[predator].Clear();
@@ -145,7 +162,7 @@ namespace SIMPS
                     Knowledgement[predator].Add(symbol);
                 }
                 // Se encontrou valor igual...
-                else if (AssociationValue[symbol, predator] == bigger)
+                else if (AssociationMemory[symbol, predator] == bigger)
                 {
                     // Adiciona o símbolo encontrado à base de conhecimento.
                     Knowledgement[predator].Add(symbol);
@@ -156,7 +173,7 @@ namespace SIMPS
         public void Restart()
         {
             InitLearning();
-            Receptions = 0;
+            //Receptions = 0;
         }
 
         private float Sigmoide(int x)
@@ -166,13 +183,13 @@ namespace SIMPS
 
         private void PrintAssociationValues()
         {
-            string text = "";
+            string text = agent.Name + "\n";
 
-            for (int predator = 0; predator < AssociationValue.GetLength(1); ++predator)
+            for (int predator = 0; predator < AssociationMemory.GetLength(1); ++predator)
             {
-                for (int symbol = 0; symbol < AssociationValue.GetLength(0); ++symbol)
+                for (int symbol = 0; symbol < AssociationMemory.GetLength(0); ++symbol)
                 {
-                    text += AssociationValue[symbol, predator] + " ";
+                    text += System.Math.Round(AssociationMemory[symbol, predator], 2).ToString("0.00 ");
                 }
 
                 text += "\n";
