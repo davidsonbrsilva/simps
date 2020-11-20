@@ -90,50 +90,6 @@ namespace SIMPS
             Create(crowlingPredator, CrowlingPredators, ref predatorId, "c", "Crowling Predator", true);
             Create(bush, Bushes, ref bushId, "b", "Bush", false);
             Create(tree, Trees, ref treeId, "t", "Tree", false);
-
-            Debug.Log(AllPredators.Count);
-
-            /*for (int i = 0; i < prey.Amount; ++i)
-            {
-                var position = EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
-                Preys.Add(Instantiate(prey.GetRandomPrefab(), position, Quaternion.identity, prey.Parent).transform);
-            }
-
-            for (int i = 0; i < landPredator.Amount; ++i)
-            {
-                var position = EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
-                var instance = Instantiate(landPredator.Prefabs[0], position, Quaternion.identity, landPredator.Parent).transform;
-                LandPredators.Add(instance);
-                AllPredators.Add(instance);
-            }
-
-            for (int i = 0; i < aerialPredator.Amount; ++i)
-            {
-                var position = EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
-                var instance = Instantiate(aerialPredator.Prefabs[0], position, Quaternion.identity, aerialPredator.Parent).transform;
-                AerialPredators.Add(instance);
-                AllPredators.Add(instance);
-            }
-
-            for (int i = 0; i < crowlingPredator.Amount; ++i)
-            {
-                var position = EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
-                var instance = Instantiate(crowlingPredator.Prefabs[0], position, Quaternion.identity, crowlingPredator.Parent).transform;
-                CrowlingPredators.Add(instance);
-                AllPredators.Add(instance);
-            }
-
-            for (int i = 0; i < tree.Amount; ++i)
-            {
-                var position = EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
-                Trees.Add(Instantiate(tree.GetRandomPrefab(), position, Quaternion.identity, tree.Parent).transform);
-            }
-
-            for (int i = 0; i < bush.Amount; ++i)
-            {
-                var position = EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
-                Bushes.Add(Instantiate(bush.GetRandomPrefab(), position, Quaternion.identity, bush.Parent).transform);
-            }*/
         }
 
         private void Create(Instantable instantable, List<Transform> activeObjects, ref int id, string shortname, string name, bool addToAllPredators)

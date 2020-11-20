@@ -571,7 +571,7 @@ MonoBehaviour:
     prefabs:
     - {fileID: 8667878059024202462, guid: 75f23be62c1d7bc46b08a3b8d06f8bee, type: 3}
     parent: {fileID: 737416766}
-    amount: 4
+    amount: 3
   landPredator:
     prefabs:
     - {fileID: 365677600677182994, guid: 26a51077ec52d6440a856ff6ab17088a, type: 3}
@@ -586,7 +586,7 @@ MonoBehaviour:
     prefabs:
     - {fileID: 986031965236109689, guid: 6ad2541a0dbe22940a427cb2971af3e5, type: 3}
     parent: {fileID: 71635028}
-    amount: 1
+    amount: 0
   tree:
     prefabs:
     - {fileID: 3184360128093989911, guid: ad684051b69640a42858f4a8b549aee0, type: 3}
@@ -867,7 +867,7 @@ BoxCollider2D:
     adaptiveTiling: 1
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 17}
+  m_Size: {x: 2, y: 9}
   m_EdgeRadius: 0
 --- !u!114 &1153237113
 MonoBehaviour:
@@ -896,7 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc55f88ecaa65aa4dbf3a0cf675f8416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ratio: 0.9
+  ratio: 0.6
   boundsObject: {fileID: 436631589}
   wallObject: {fileID: 1153237110}
   wallSpriteObject: {fileID: 1897068594}
@@ -1081,7 +1081,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2, y: 17}
+  m_Size: {x: 2, y: 9}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
