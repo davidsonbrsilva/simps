@@ -571,7 +571,7 @@ MonoBehaviour:
     prefabs:
     - {fileID: 8667878059024202462, guid: 75f23be62c1d7bc46b08a3b8d06f8bee, type: 3}
     parent: {fileID: 737416766}
-    amount: 3
+    amount: 4
   landPredator:
     prefabs:
     - {fileID: 365677600677182994, guid: 26a51077ec52d6440a856ff6ab17088a, type: 3}
@@ -586,20 +586,20 @@ MonoBehaviour:
     prefabs:
     - {fileID: 986031965236109689, guid: 6ad2541a0dbe22940a427cb2971af3e5, type: 3}
     parent: {fileID: 71635028}
-    amount: 0
+    amount: 1
   tree:
     prefabs:
     - {fileID: 3184360128093989911, guid: ad684051b69640a42858f4a8b549aee0, type: 3}
     - {fileID: 8693805369585761199, guid: bdc05ddbd93819d4dab7c8990b4e40b3, type: 3}
     - {fileID: 9024103919133991155, guid: 446df46903ad29145adec4c7c2973cf9, type: 3}
     parent: {fileID: 1690219009}
-    amount: 4
+    amount: 6
   bush:
     prefabs:
     - {fileID: 6683315699784595306, guid: 787962ea797ddee4f81d572cdd688924, type: 3}
     - {fileID: 8626796033127315438, guid: cf96bf0f2f380b14c8f7230f945e29f2, type: 3}
     parent: {fileID: 413797585}
-    amount: 4
+    amount: 6
 --- !u!1 &723884432
 GameObject:
   m_ObjectHideFlags: 0

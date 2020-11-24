@@ -32,6 +32,8 @@ namespace SIMPS
         public List<Transform> Trees { get; private set; }
         public List<Transform> Bushes { get; private set; }
         public List<Transform> EscapeCoordinates { get; private set; }
+        public List<AgentController> PreyControllers { get; private set; }
+        public List<AgentController> PredatorControllers { get; private set; }
 
         private void Awake()
         {
@@ -43,6 +45,9 @@ namespace SIMPS
             Trees = new List<Transform>();
             Bushes = new List<Transform>();
             EscapeCoordinates = new List<Transform>();
+
+            PreyControllers = new List<AgentController>();
+            PredatorControllers = new List<AgentController>();
 
             var map = GameObject.FindWithTag("Map");
             var escapeCoordinates = map.transform.Find("Escape Coordinates");
@@ -84,15 +89,15 @@ namespace SIMPS
             int bushId = 0;
             int treeId = 0;
 
-            Create(prey, Preys, ref preyId, "p", "Prey", false);
-            Create(landPredator, LandPredators, ref predatorId, "l", "Land Predator", true);
-            Create(aerialPredator, AerialPredators, ref predatorId, "a", "Aerial Predator", true);
-            Create(crowlingPredator, CrowlingPredators, ref predatorId, "c", "Crowling Predator", true);
-            Create(bush, Bushes, ref bushId, "b", "Bush", false);
-            Create(tree, Trees, ref treeId, "t", "Tree", false);
+            Create(prey, Preys, ref preyId, "p", "Prey", false, PreyControllers);
+            Create(landPredator, LandPredators, ref predatorId, "l", "Land Predator", true, PredatorControllers);
+            Create(aerialPredator, AerialPredators, ref predatorId, "a", "Aerial Predator", true, PredatorControllers);
+            Create(crowlingPredator, CrowlingPredators, ref predatorId, "c", "Crowling Predator", true, PredatorControllers);
+            Create(bush, Bushes, ref bushId, "b", "Bush", false, null);
+            Create(tree, Trees, ref treeId, "t", "Tree", false, null);
         }
 
-        private void Create(Instantable instantable, List<Transform> activeObjects, ref int id, string shortname, string name, bool addToAllPredators)
+        private void Create(Instantable instantable, List<Transform> activeObjects, ref int id, string shortname, string name, bool addToAllPredators, List<AgentController> controllers)
         {
             for (int i = 0; i < instantable.Amount; ++i)
             {
@@ -114,6 +119,11 @@ namespace SIMPS
                     controller.ShortName = shortname + (i + 1);
                     controller.Name = name + " " + (i + 1);
                     id++;
+                }
+
+                if (controllers != null)
+                {
+                    controllers.Add(controller);
                 }
             }
         }
