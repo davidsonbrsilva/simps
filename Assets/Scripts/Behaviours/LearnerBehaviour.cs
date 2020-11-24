@@ -82,6 +82,7 @@ namespace SIMPS
             {
                 for (int column = 0; column < AssociationMemory.GetLength(1); ++column)
                 {
+                    //AssociationMemory[line, column] = Random.Range(0f, 0.5f);
                     AssociationMemory[line, column] = 0.0f;
                 }
             }
@@ -112,7 +113,8 @@ namespace SIMPS
                 AssociationMemory[symbol, predator] = Mathf.Clamp(AssociationMemory[symbol, predator], 0f, 1f);
                 UpdateKnowledgement(predator);
                 Inibition[symbol, predator] = 0f;
-                PrintAssociationValues();
+                //PrintAssociationValues();
+                PrintKnowledgement();
             }
         }
 
@@ -129,9 +131,12 @@ namespace SIMPS
                     biggest = AssociationMemory[randomSymbol, predator];
                 }
 
-                AssociationMemory[symbol, predator] = (AssociationMemory[symbol, predator] - 0.1f * (biggest - AssociationMemory[symbol, predator]) - 0.01f) * Time.deltaTime * weakenSmooth;
+                //AssociationMemory[symbol, predator] = (AssociationMemory[symbol, predator] - 0.1f * (biggest - AssociationMemory[symbol, predator]) - 0.01f) * Time.deltaTime * weakenSmooth;
+                AssociationMemory[symbol, predator] = AssociationMemory[symbol, predator] - 0.1f * (biggest - AssociationMemory[symbol, predator]) - Time.deltaTime * weakenSmooth /* weakenSmooth*/;
+                //Debug.Log(Time.deltaTime);
                 AssociationMemory[symbol, predator] = Mathf.Clamp(AssociationMemory[symbol, predator], 0f, 1f);
                 UpdateKnowledgement(predator);
+                //PrintAssociationValues();
             }
         }
 
@@ -144,10 +149,10 @@ namespace SIMPS
             float bigger = AssociationMemory[0, predator];
 
             // Adiciona o primeiro símbolo na base de conhecimento.
-            Knowledgement[predator].Add(0);
+            //Knowledgement[predator].Add(0);
 
             // Percorre todos os outros símbolos para descobrir o maior valor de associação.
-            for (int symbol = 1; symbol < AssociationMemory.GetLength(0); ++symbol)
+            for (int symbol = 0; symbol < AssociationMemory.GetLength(0); ++symbol)
             {
                 // Se encontrou valor maior...
                 if (AssociationMemory[symbol, predator] > bigger)
@@ -162,7 +167,7 @@ namespace SIMPS
                     Knowledgement[predator].Add(symbol);
                 }
                 // Se encontrou valor igual...
-                else if (AssociationMemory[symbol, predator] == bigger)
+                else if (AssociationMemory[symbol, predator] == bigger && AssociationMemory[symbol, predator] > 0.0f)
                 {
                     // Adiciona o símbolo encontrado à base de conhecimento.
                     Knowledgement[predator].Add(symbol);
@@ -176,11 +181,6 @@ namespace SIMPS
             //Receptions = 0;
         }
 
-        private float Sigmoide(int x)
-        {
-            return 1 / (1 + (float)System.Math.Exp(-(0.1 * x - 5)));
-        }
-
         private void PrintAssociationValues()
         {
             string text = agent.Name + "\n";
@@ -190,6 +190,39 @@ namespace SIMPS
                 for (int symbol = 0; symbol < AssociationMemory.GetLength(0); ++symbol)
                 {
                     text += System.Math.Round(AssociationMemory[symbol, predator], 2).ToString("0.00 ");
+                }
+
+                text += "\n";
+            }
+
+            Debug.Log(text);
+        }
+
+        private void PrintKnowledgement()
+        {
+            string text = "\t";
+
+            for (int prey = 0; prey < spawner.Preys.Count; ++prey)
+            {
+                text += spawner.PreyControllers[prey].Name + "\t";
+            }
+
+            text += "\n";
+
+            for (int predator = 0; predator < spawner.AllPredators.Count; ++predator)
+            {
+                text += spawner.PredatorControllers[predator].ShortName + "\t";
+
+                for (int prey = 0; prey < spawner.Preys.Count; ++prey)
+                {
+                    if (spawner.PreyControllers[prey].Learner.Knowledgement[predator].Count > 0)
+                    {
+                        text += spawner.PreyControllers[prey].Learner.Knowledgement[predator][0] + "\t";
+                    }
+                    else
+                    {
+                        text += "-\t";
+                    }
                 }
 
                 text += "\n";

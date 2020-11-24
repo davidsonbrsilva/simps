@@ -34,7 +34,7 @@ namespace SIMPS {
 
         private void Start()
         {
-            StartCoroutine(NewPosition());
+            StartCoroutine("NewPosition");
         }
 
         private void Update()
