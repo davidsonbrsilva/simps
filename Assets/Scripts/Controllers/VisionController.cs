@@ -31,10 +31,12 @@ namespace SIMPS
         public float SawAerialPredatorAt { get; private set; }
         public float SawLandPredatorAt { get; private set; }
         public float SawCrowlingPredatorAt { get; private set; }
+        public float SawPreyAt { get; private set; }
         public bool SawAerialPredator { get; private set; }
         public bool SawLandPredator { get; private set; }
         public bool SawCrowlingPredator { get; private set; }
         public bool SawPredator { get; private set; }
+        public bool SawPrey { get; private set; }
         #endregion
 
         #region Unity Methods
@@ -50,6 +52,7 @@ namespace SIMPS
             SawLandPredator = false;
             SawCrowlingPredator = false;
             SawPredator = false;
+            SawPrey = false;
         }
 
         private void Update()
@@ -57,6 +60,7 @@ namespace SIMPS
             SawAerialPredatorAt += Time.deltaTime;
             SawLandPredatorAt += Time.deltaTime;
             SawCrowlingPredatorAt += Time.deltaTime;
+            SawPreyAt += Time.deltaTime;
 
             if (!IsSeeingAerialPredator)
             {
@@ -95,6 +99,19 @@ namespace SIMPS
             {
                 SawCrowlingPredatorAt = 0f;
                 SawCrowlingPredator = true;
+            }
+
+            if (!IsSeeingPrey)
+            {
+                if (SawPreyAt > timeOfDangerMemory)
+                {
+                    SawPrey = false;
+                }
+            }
+            else
+            {
+                SawPreyAt = 0f;
+                SawPrey = true;
             }
 
             SawPredator = SawAerialPredator || SawLandPredator || SawCrowlingPredator;

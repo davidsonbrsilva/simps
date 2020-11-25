@@ -134,7 +134,7 @@ namespace SIMPS
 
             foreach (var bush in spawner.Bushes)
             {
-                if ((escapeCoordinate.transform.position == bush.transform.position) && agent.Vision.IsSeeingAerialPredator)
+                if ((escapeCoordinate.transform.position == bush.transform.position) && agent.Vision.SawAerialPredator)
                 {
                     escapeCoordinateController.CoordinateValue = 1f;
                 }
@@ -142,7 +142,7 @@ namespace SIMPS
 
             foreach (var tree in spawner.Trees)
             {
-                if ((escapeCoordinate.transform.position == tree.transform.position) && agent.Vision.IsSeeingLandPredator)
+                if ((escapeCoordinate.transform.position == tree.transform.position) && agent.Vision.SawLandPredator)
                 {
                     escapeCoordinateController.CoordinateValue = 1f;
                 }

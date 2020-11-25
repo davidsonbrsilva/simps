@@ -24,13 +24,6 @@ namespace SIMPS
             rotatable = transform.Find("Rotatable");
         }
 
-        /*void Start()
-        {
-            
-            
-            
-        }*/
-
         void Update()
         {
             if (agent.Vision.IsSeeingPrey)
@@ -53,7 +46,5 @@ namespace SIMPS
         {
             animator.SetBool("IsAlert", false);
         }
-
-
     }
 }

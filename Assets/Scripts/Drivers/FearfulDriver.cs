@@ -37,13 +37,6 @@ namespace SIMPS
             fear = Mathf.Clamp(fear, 0.01f, 0.99f);
 
             motivation = fear;
-
-            activated = true;
-
-            if (motivation == 0.01f)
-            {
-                activated = false;
-            }
         }
 
         private void OnEnable()

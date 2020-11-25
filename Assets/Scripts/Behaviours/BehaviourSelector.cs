@@ -10,6 +10,7 @@ namespace SIMPS
         private SleeperBehaviour sleeperBehaviour;
         private HunterBehaviour hunterBehaviour;
         private FearfulBehaviour fearfulBehaviour;
+        private LonelinessBehaviour lonelinessBehaviour;
 
         private SimpsDriver bestDriver;
 
@@ -26,12 +27,14 @@ namespace SIMPS
             sleeperBehaviour = GetComponent<SleeperBehaviour>();
             hunterBehaviour = GetComponent<HunterBehaviour>();
             fearfulBehaviour = GetComponent<FearfulBehaviour>();
+            lonelinessBehaviour = GetComponent<LonelinessBehaviour>();
 
             // Procura por cada um dos tipos de drivers do SIMPS.
             var explorerDriver = GetComponent<ExplorerDriver>();
             var sleeperDriver = GetComponent<SleeperDriver>();
             var hunterDriver = GetComponent<HunterDriver>();
             var fearfulDriver = GetComponent<FearfulDriver>();
+            var lonelinessDriver = GetComponent<LonelinessDriver>();
 
             // Adiciona os comportamentos encontrados na lista designada.
             if (explorerBehaviour != null)
@@ -50,6 +53,10 @@ namespace SIMPS
             {
                 behaviours.Add(fearfulBehaviour);
             }
+            if (lonelinessBehaviour != null)
+            {
+                behaviours.Add(lonelinessBehaviour);
+            }
 
             // Adiciona os drivers encontrados na lista designada.
             if (explorerDriver != null)
@@ -67,6 +74,10 @@ namespace SIMPS
             if (fearfulDriver != null)
             {
                 drivers.Add(fearfulDriver);
+            }
+            if (lonelinessDriver != null)
+            {
+                drivers.Add(lonelinessDriver);
             }
 
             if (drivers.Count > 0)
@@ -91,17 +102,21 @@ namespace SIMPS
                 }
             }
 
-            if (bestDriver is SleeperDriver && bestDriver.activated)
+            if (bestDriver is SleeperDriver && bestDriver.Motivation > 0f)
             {
                 sleeperBehaviour.enabled = true;
             }
-            else if (bestDriver is HunterDriver && bestDriver.activated)
+            else if (bestDriver is HunterDriver && bestDriver.Motivation > 0f)
             {
                 hunterBehaviour.enabled = true;
             }
-            else if (bestDriver is FearfulDriver && bestDriver.activated)
+            else if (bestDriver is FearfulDriver && bestDriver.Motivation > 0.01f)
             {
                 fearfulBehaviour.enabled = true;
+            }
+            else if (bestDriver is LonelinessDriver && bestDriver.Motivation > 0.01f)
+            {
+                lonelinessBehaviour.enabled = true;
             }
             else
             {

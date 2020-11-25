@@ -23,6 +23,7 @@ namespace SIMPS
         public HunterBehaviour Hunter { get; private set; }
         public LearnerBehaviour Learner { get; private set; }
         public FearfulBehaviour Fearful { get; private set; }
+        public LonelinessBehaviour Loneliness { get; private set; }
         //public Mortal Mortal { get; private set; }
         public VisionController Vision { get; private set; }
         public CaptureController Capture { get; private set; }
@@ -79,6 +80,7 @@ namespace SIMPS
                 Learner = GetComponent<LearnerBehaviour>();
                 //Mortal = GetComponent<Mortal>();
                 Fearful = GetComponent<FearfulBehaviour>();
+                Loneliness = GetComponent<LonelinessBehaviour>();
             }
             else if (IsPredator)
             {

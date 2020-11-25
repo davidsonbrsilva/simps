@@ -35,8 +35,6 @@ namespace SIMPS {
                 fatigue = Mathf.Clamp(fatigue, 0f, 1f);
             }
 
-            activated = true;
-
             if (fatigue > 0.5f)
             {
                 motivation = fatigue;
@@ -48,7 +46,6 @@ namespace SIMPS {
             else
             {
                 motivation = 0f;
-                activated = false;
             }
         }
 

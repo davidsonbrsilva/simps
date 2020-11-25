@@ -18,30 +18,22 @@ namespace SIMPS
 
         public float[,] AssociationMemory { get; private set; }
         public float[,] Inibition { get; private set; }
-        //public int[,] NumberOfAssociations { get; private set; }
         public List<int>[] Knowledgement { get; private set; }
-        //public int Receptions { get { return receptions; } set { receptions = value; } }
-        //public bool Learned { get; private set; }
-        //public int PredatorSeen { get; private set; }
 
         private void Awake()
         {
             spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
             agent = GetComponent<AgentController>();
-            //lastHeardSignal = null;
         }
 
         private void Start()
         {
             AssociationMemory = new float[spawner.Symbols, spawner.AllPredators.Count];
             Inibition = new float[spawner.Symbols, spawner.AllPredators.Count];
-            //NumberOfAssociations = new int[spawner.Symbols, spawner.AllPredators.Count];
             Knowledgement = new List<int>[spawner.AllPredators.Count];
-            //Receptions = 0;
 
             InitLearning();
             InitKnowledgement();
-            PrintAssociationValues();
         }
 
         private void Update()
@@ -82,7 +74,6 @@ namespace SIMPS
             {
                 for (int column = 0; column < AssociationMemory.GetLength(1); ++column)
                 {
-                    //AssociationMemory[line, column] = Random.Range(0f, 0.5f);
                     AssociationMemory[line, column] = 0.0f;
                 }
             }
@@ -113,7 +104,6 @@ namespace SIMPS
                 AssociationMemory[symbol, predator] = Mathf.Clamp(AssociationMemory[symbol, predator], 0f, 1f);
                 UpdateKnowledgement(predator);
                 Inibition[symbol, predator] = 0f;
-                //PrintAssociationValues();
                 PrintKnowledgement();
             }
         }
@@ -131,12 +121,9 @@ namespace SIMPS
                     biggest = AssociationMemory[randomSymbol, predator];
                 }
 
-                //AssociationMemory[symbol, predator] = (AssociationMemory[symbol, predator] - 0.1f * (biggest - AssociationMemory[symbol, predator]) - 0.01f) * Time.deltaTime * weakenSmooth;
                 AssociationMemory[symbol, predator] = AssociationMemory[symbol, predator] - 0.1f * (biggest - AssociationMemory[symbol, predator]) - Time.deltaTime * weakenSmooth /* weakenSmooth*/;
-                //Debug.Log(Time.deltaTime);
                 AssociationMemory[symbol, predator] = Mathf.Clamp(AssociationMemory[symbol, predator], 0f, 1f);
                 UpdateKnowledgement(predator);
-                //PrintAssociationValues();
             }
         }
 
@@ -147,9 +134,6 @@ namespace SIMPS
 
             // Armazena o valor da primeira associação à variável "bigger".
             float bigger = AssociationMemory[0, predator];
-
-            // Adiciona o primeiro símbolo na base de conhecimento.
-            //Knowledgement[predator].Add(0);
 
             // Percorre todos os outros símbolos para descobrir o maior valor de associação.
             for (int symbol = 0; symbol < AssociationMemory.GetLength(0); ++symbol)
@@ -178,7 +162,6 @@ namespace SIMPS
         public void Restart()
         {
             InitLearning();
-            //Receptions = 0;
         }
 
         private void PrintAssociationValues()

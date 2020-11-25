@@ -42,8 +42,6 @@ namespace SIMPS {
                 hunger = Mathf.Clamp(hunger, 0f, 1f);
             }
 
-            activated = true;
-
             if (hunger > 0.5f && agentController.Vision.IsSeeingPrey && !pursuitController.PreyIsProtected)
             {
                 motivation = hunger;
@@ -51,7 +49,6 @@ namespace SIMPS {
             else
             {
                 motivation = 0f;
-                activated = false;
             }
         }
 
