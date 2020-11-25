@@ -382,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   receptions: 0
   timeUntilNextAssociation: 2
-  weakenSmooth: 0.001
+  weakenSmooth: 0.00025
 --- !u!114 &2663186813505625223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,8 +426,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 10
-  securityWeight: 1
-  dangerWeight: 1
+  treesWeight: 1
+  bushesWeight: 1
+  predatorsWeight: 1
 --- !u!114 &4886190247039757366
 MonoBehaviour:
   m_ObjectHideFlags: 0

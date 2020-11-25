@@ -9,8 +9,9 @@ namespace SIMPS
     public class FearfulBehaviour : SimpsBehaviour
     {
         [SerializeField] private float turnSpeed = 10f;
-        [SerializeField] private float securityWeight = 1f;
-        [SerializeField] private float dangerWeight = 1f;
+        [SerializeField] private float treesWeight = 1f;
+        [SerializeField] private float bushesWeight = 1f;
+        [SerializeField] private float predatorsWeight = 1f;
 
         private Spawner spawner;
         private ActionRadiusController actionRadiusController;
@@ -95,7 +96,8 @@ namespace SIMPS
             var escapeCoordinateController = escapeCoordinate.GetComponent<EscapeCoordinateController>();
 
             escapeCoordinateController.MeanPredatorsDistance = sumPredatorsDistance / spawner.AllPredators.Count;
-            escapeCoordinateController.MeanHiddingPlacesDistance = (sumBushesDistance / spawner.Bushes.Count) + (sumTreesDistance / spawner.Trees.Count);
+            escapeCoordinateController.MeanBushesDistance = sumBushesDistance / spawner.Bushes.Count;
+            escapeCoordinateController.MeanTreesDistance = sumTreesDistance / spawner.Trees.Count;
         }
         private void CalculateNormalizedValue(GameObject escapeCoordinate, List<GameObject> escapeCoordinates)
         {
@@ -103,22 +105,36 @@ namespace SIMPS
 
             float min = escapeCoordinates.Min(ec => ec.GetComponent<EscapeCoordinateController>().MeanPredatorsDistance);
             float max = escapeCoordinates.Max(ec => ec.GetComponent<EscapeCoordinateController>().MeanPredatorsDistance);
-            float normalizedDangerValue = (escapeCoordinateController.MeanPredatorsDistance - min) / (max - min);
+            float normPredatorsDistance = (escapeCoordinateController.MeanPredatorsDistance - min) / (max - min);
 
-            min = escapeCoordinates.Min(ec => ec.GetComponent<EscapeCoordinateController>().MeanHiddingPlacesDistance);
-            max = escapeCoordinates.Max(ec => ec.GetComponent<EscapeCoordinateController>().MeanHiddingPlacesDistance);
-            float normalizedSecurityValue = 1 - ((escapeCoordinateController.MeanHiddingPlacesDistance - min) / (max - min));
+            min = escapeCoordinates.Min(ec => ec.GetComponent<EscapeCoordinateController>().MeanTreesDistance);
+            max = escapeCoordinates.Max(ec => ec.GetComponent<EscapeCoordinateController>().MeanTreesDistance);
+            float normTreesDistance = 1 - ((escapeCoordinateController.MeanTreesDistance - min) / (max - min));
 
-            if (float.IsNaN(normalizedSecurityValue))
+            min = escapeCoordinates.Min(ec => ec.GetComponent<EscapeCoordinateController>().MeanBushesDistance);
+            max = escapeCoordinates.Max(ec => ec.GetComponent<EscapeCoordinateController>().MeanBushesDistance);
+            float normBushesDistance = 1 - ((escapeCoordinateController.MeanBushesDistance - min) / (max - min));
+
+            if (float.IsNaN(normTreesDistance))
             {
-                normalizedSecurityValue = 0f;
+                normTreesDistance = 0f;
             }
 
-            escapeCoordinateController.CoordinateValue = (dangerWeight * normalizedDangerValue + securityWeight * normalizedSecurityValue) / (dangerWeight + securityWeight);
+            if (float.IsNaN(normPredatorsDistance))
+            {
+                normPredatorsDistance = 0f;
+            }
+
+            if (float.IsNaN(normBushesDistance))
+            {
+                normBushesDistance = 0f;
+            }
+
+            escapeCoordinateController.CoordinateValue = (predatorsWeight * normPredatorsDistance + treesWeight * normTreesDistance + bushesWeight * normBushesDistance) / (predatorsWeight + treesWeight + bushesWeight);
 
             foreach (var bush in spawner.Bushes)
             {
-                if ((escapeCoordinate.transform.position == bush.transform.position) && agent.Vision.SawAerialPredator)
+                if ((escapeCoordinate.transform.position == bush.transform.position) && agent.Vision.IsSeeingAerialPredator)
                 {
                     escapeCoordinateController.CoordinateValue = 1f;
                 }
@@ -126,7 +142,7 @@ namespace SIMPS
 
             foreach (var tree in spawner.Trees)
             {
-                if ((escapeCoordinate.transform.position == tree.transform.position) && agent.Vision.SawLandPredator)
+                if ((escapeCoordinate.transform.position == tree.transform.position) && agent.Vision.IsSeeingLandPredator)
                 {
                     escapeCoordinateController.CoordinateValue = 1f;
                 }

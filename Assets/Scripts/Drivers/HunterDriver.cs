@@ -13,6 +13,7 @@ namespace SIMPS {
         #region Private Attributes
         private PolyNavAgent polyNavAgent;
         private AgentController agentController;
+        private PursuitController pursuitController;
         #endregion
 
         #region Private Properties
@@ -26,6 +27,7 @@ namespace SIMPS {
         private void Awake()
         {
             agentController = GetComponent<AgentController>();
+            pursuitController = GetComponent<PursuitController>();
         }
 
         private void Update()
@@ -42,7 +44,7 @@ namespace SIMPS {
 
             activated = true;
 
-            if (hunger > 0.5f && agentController.Vision.IsSeeingPrey)
+            if (hunger > 0.5f && agentController.Vision.IsSeeingPrey && !pursuitController.PreyIsProtected)
             {
                 motivation = hunger;
             }

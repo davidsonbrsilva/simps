@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2052004983
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d94285d173824434f9d5a0f6b59fbc04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 365677600677182993}
   - component: {fileID: 6461771250317997902}
   - component: {fileID: 3383339359712407686}
+  - component: {fileID: 4759528376059727426}
   - component: {fileID: 6461771250317997896}
   - component: {fileID: 6461771250317997900}
   - component: {fileID: 6461771250317997903}
@@ -167,6 +168,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
+--- !u!114 &4759528376059727426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365677600677182994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e5549335017b2468537346a2fd1cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6461771250317997896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,7 +496,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1221469271
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c1ddff1cf871e704e8486571abbfcbb3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -720,7 +733,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2052004983
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7b0c1133dc22e3f47b17689df870c576, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -802,7 +815,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2052004983
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a7eb2ccdaad1d7a44a82c74970c1c7b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
