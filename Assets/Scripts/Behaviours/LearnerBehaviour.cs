@@ -6,24 +6,25 @@ namespace SIMPS
     /// <summary>
     /// Classe para agentes que aprendem.
     /// </summary>
-    public class LearnerBehaviour : MonoBehaviour
+    public class LearnerBehaviour : SimpsBehaviour
     {
-        [SerializeField] private int receptions;
         [SerializeField] private float timeUntilNextAssociation = 2f;
         [SerializeField] private float weakenSmooth = 1;
 
         private Spawner spawner;
         private AgentController agent;
-        //private SignalController lastHeardSignal;
 
         public float[,] AssociationMemory { get; private set; }
         public float[,] Inibition { get; private set; }
         public List<int>[] Knowledgement { get; private set; }
+        public bool Learned { get; private set; }
+        public List<Association> LastAssociations { get; private set; }
 
         private void Awake()
         {
-            spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
+            spawner = GameObject.FindWithTag("Core").GetComponent<Spawner>();
             agent = GetComponent<AgentController>();
+            LastAssociations = new List<Association>();
         }
 
         private void Start()
@@ -38,6 +39,16 @@ namespace SIMPS
 
         private void Update()
         {
+            if (Learned)
+            {
+                Learned = false;
+            }
+
+            if (LastAssociations.Count > 0)
+            {
+                LastAssociations.Clear();
+            }
+
             for (int symbol = 0; symbol < Inibition.GetLength(0); ++symbol)
             {
                 for (int predator = 0; predator < Inibition.GetLength(1); ++predator)
@@ -50,12 +61,13 @@ namespace SIMPS
             {
                 for (int predator = 0; predator < agent.Vision.AllPredators.Count; ++predator)
                 {
-                    Reinforce
-                    (
+                    var association = new Association(
                         agent.Hearing.Signals[signal].Symbol,
                         spawner.AllPredators.IndexOf(agent.Vision.AllPredators[predator])
                     );
-                    
+                    LastAssociations.Add(association);
+
+                    Reinforce(association.Symbol, association.Predator);
                 }
             }
 
@@ -105,6 +117,7 @@ namespace SIMPS
                 UpdateKnowledgement(predator);
                 Inibition[symbol, predator] = 0f;
                 PrintKnowledgement();
+                Learned = true;
             }
         }
 
@@ -159,11 +172,6 @@ namespace SIMPS
             }
         }
 
-        public void Restart()
-        {
-            InitLearning();
-        }
-
         private void PrintAssociationValues()
         {
             string text = agent.Name + "\n";
@@ -212,6 +220,12 @@ namespace SIMPS
             }
 
             Debug.Log(text);
+        }
+
+        public override void Restart()
+        {
+            InitLearning();
+            InitKnowledgement();
         }
     }
 }

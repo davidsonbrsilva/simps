@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallController : MonoBehaviour
+namespace SIMPS
 {
-    [SerializeField] private float ratio;
-    [SerializeField] private GameObject boundsObject;
-    [SerializeField] private GameObject wallObject;
-    [SerializeField] private GameObject wallSpriteObject;
-
-    private void Awake()
+    public class WallController : MonoBehaviour
     {
-        var bounds = boundsObject.GetComponent<BoxCollider2D>();
-        var wall = wallObject.GetComponent<BoxCollider2D>();
-        var wallSprite = wallSpriteObject.GetComponent<SpriteRenderer>();
+        [SerializeField] private float ratio;
+        [SerializeField] private GameObject boundsObject;
+        [SerializeField] private GameObject wallObject;
+        [SerializeField] private GameObject wallSpriteObject;
 
-        wall.size = new Vector2(wall.size.x, bounds.size.y * ratio);
-        wallSprite.size = new Vector2(wall.size.x, bounds.size.y * ratio);
+        private void Awake()
+        {
+            var bounds = boundsObject.GetComponent<BoxCollider2D>();
+            var wall = wallObject.GetComponent<BoxCollider2D>();
+            var wallSprite = wallSpriteObject.GetComponent<SpriteRenderer>();
+
+            wall.size = new Vector2(wall.size.x, bounds.size.y * ratio);
+            wallSprite.size = new Vector2(wall.size.x, bounds.size.y * ratio);
+        }
     }
 }

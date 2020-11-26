@@ -23,9 +23,8 @@ namespace SIMPS
 
         #region Properties
         private bool CanEmit { get { return lastEmission + signalRate < Time.time; } }
-
         public bool Emitted { get; private set; }
-        public int EmittedSignal { get; private set; }
+        public int EmittedSymbol { get; private set; }
         public int SeenPredator { get; private set; }
         #endregion
 
@@ -95,10 +94,10 @@ namespace SIMPS
             
             signalController.Sender = gameObject;
 
-            EmittedSignal = signalController.Symbol;
+            EmittedSymbol = signalController.Symbol;
         }
 
-        public void Restart()
+        public override void Restart()
         {
             emissions = 0;
             lastEmission = 0;

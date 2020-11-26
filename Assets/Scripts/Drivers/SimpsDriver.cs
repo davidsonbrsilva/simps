@@ -7,4 +7,6 @@ public abstract class SimpsDriver : MonoBehaviour
     public float motivation;
 
     public float Motivation { get { return motivation; } }
+
+    public abstract void Restart();
 }

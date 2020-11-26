@@ -54,6 +54,11 @@ namespace SIMPS {
 
         private void OnEnable()
         {
+            Restart();
+        }
+
+        public override void Restart()
+        {
             hunger = 1f;
         }
         #endregion

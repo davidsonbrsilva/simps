@@ -89,5 +89,10 @@ namespace SIMPS
 
             return closest;
         }
+
+        public override void Restart()
+        {
+            //
+        }
     }
 }

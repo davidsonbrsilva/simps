@@ -59,6 +59,11 @@ namespace SIMPS {
                 Random.Range(minBounds.y, maxBounds.y)
             );
         }
+
+        public override void Restart()
+        {
+            StartCoroutine("NewPosition");
+        }
         #endregion
     }
 }

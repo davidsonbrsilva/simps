@@ -35,6 +35,11 @@ namespace SIMPS
 
         private void OnEnable()
         {
+            Restart();
+        }
+
+        public override void Restart()
+        {
             loneliness = 0.5f;
         }
     }

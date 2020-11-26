@@ -37,6 +37,8 @@ namespace SIMPS
 
         private void Awake()
         {
+            DefineSettings();
+
             Preys = new List<Transform>();
             LandPredators = new List<Transform>();
             AerialPredators = new List<Transform>();
@@ -101,7 +103,7 @@ namespace SIMPS
         {
             for (int i = 0; i < instantable.Amount; ++i)
             {
-                var position = EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
+                var position = GetRandomOriginPosition();
                 GameObject clone = Instantiate(instantable.GetRandomPrefab(), position, Quaternion.identity, instantable.Parent);
 
                 activeObjects.Add(clone.transform);
@@ -125,6 +127,33 @@ namespace SIMPS
                 {
                     controllers.Add(controller);
                 }
+            }
+        }
+
+        public Vector2 GetRandomOriginPosition()
+        {
+            return EscapeCoordinates[Random.Range(0, EscapeCoordinates.Count)].transform.position;
+        }
+
+        private void DefineSettings()
+        {
+            try
+            {
+                SettingsFileStreamer settings = GetComponent<SettingsFileStreamer>();
+
+                if (settings != null)
+                {
+                    var data = settings.Data;
+
+                    prey.Amount = data.preys;
+                    landPredator.Amount = data.landPredators;
+                    aerialPredator.Amount = data.aerialPredators;
+                    crowlingPredator.Amount = data.crowlingPredators;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("O arquivo de configurações não foi carregado. Definindo simulações a partir das configurações do Inspector...");
             }
         }
     }

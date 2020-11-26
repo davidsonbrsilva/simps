@@ -15,12 +15,20 @@ namespace SIMPS
         {
             get { return agent != null ? agent : agent = GetComponent<PolyNavAgent>(); }
         }
+
         #endregion
 
         #region Unity Methods
         private void OnEnable()
         {
             Agent.Stop();
+        }
+        #endregion
+
+        #region Other Methods
+        public override void Restart()
+        {
+            //
         }
         #endregion
     }

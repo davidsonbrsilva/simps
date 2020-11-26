@@ -29,7 +29,7 @@ namespace SIMPS
         {
             camera = GetComponent<Camera>();
             map = GameObject.FindWithTag("Map").GetComponent<SpriteRenderer>();
-            selector = GameObject.FindWithTag("Selector").GetComponent<Selector>();
+            selector = GameObject.FindWithTag("Core").GetComponent<Selector>();
 
             targetPosition = camera.transform.position;
             movementVelocity = Vector3.zero;

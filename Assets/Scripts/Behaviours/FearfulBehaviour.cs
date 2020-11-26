@@ -24,7 +24,7 @@ namespace SIMPS
         private void Awake()
         {
             animator = GetComponent<Animator>();
-            spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
+            spawner = GameObject.FindWithTag("Core").GetComponent<Spawner>();
             actionRadiusController = transform.Find("Action Radius").GetComponent<ActionRadiusController>();
             polyNavAgent = GetComponent<PolyNavAgent>();
             agent = GetComponent<AgentController>();
@@ -147,6 +147,11 @@ namespace SIMPS
                     escapeCoordinateController.CoordinateValue = 1f;
                 }
             }
+        }
+
+        public override void Restart()
+        {
+            //
         }
     }
 }

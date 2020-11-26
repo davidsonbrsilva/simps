@@ -41,6 +41,11 @@ namespace SIMPS
 
         private void OnEnable()
         {
+            Restart();
+        }
+
+        public override void Restart()
+        {
             fear = 0.01f;
         }
     }

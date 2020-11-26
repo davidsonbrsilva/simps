@@ -51,6 +51,11 @@ namespace SIMPS {
 
         private void OnEnable()
         {
+            Restart();
+        }
+
+        public override void Restart()
+        {
             fatigue = 0f;
         }
         #endregion

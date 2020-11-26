@@ -6,6 +6,6 @@ namespace SIMPS
 {
     public abstract class SimpsBehaviour : MonoBehaviour
     {
-
+        public abstract void Restart();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SIMPS
 {
-    public class BehaviourSelector : SimpsBehaviour
+    public class BehaviourSelector : MonoBehaviour
     {
         private ExplorerBehaviour explorerBehaviour;
         private SleeperBehaviour sleeperBehaviour;

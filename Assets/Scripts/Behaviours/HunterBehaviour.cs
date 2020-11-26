@@ -46,5 +46,10 @@ namespace SIMPS
         {
             animator.SetBool("IsAlert", false);
         }
+
+        public override void Restart()
+        {
+            //
+        }
     }
 }

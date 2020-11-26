@@ -24,14 +24,11 @@ namespace SIMPS
         public LearnerBehaviour Learner { get; private set; }
         public FearfulBehaviour Fearful { get; private set; }
         public LonelinessBehaviour Loneliness { get; private set; }
-        //public Mortal Mortal { get; private set; }
         public VisionController Vision { get; private set; }
         public CaptureController Capture { get; private set; }
         public ProtectionController Protection { get; private set; }
         public RecognitionController Hearing { get; private set; }
         public ActionRadiusController ActionRadius { get; private set; }
-
-        private Manager manager;
 
         public void Awake()
         {
@@ -40,8 +37,6 @@ namespace SIMPS
             IsLandPredator = false;
             IsAerialPredator = false;
             IsCrowlingPredator = false;
-
-            manager = GameObject.FindWithTag("Core").GetComponent<Manager>();
 
             Transform agentVision = transform.Find("Rotatable").Find("Vision");
             Transform agentMarker = transform.Find("Rotatable").Find("Marker");
@@ -78,7 +73,6 @@ namespace SIMPS
                 Explorer = GetComponent<ExplorerBehaviour>();
                 Hunter = GetComponent<HunterBehaviour>();
                 Learner = GetComponent<LearnerBehaviour>();
-                //Mortal = GetComponent<Mortal>();
                 Fearful = GetComponent<FearfulBehaviour>();
                 Loneliness = GetComponent<LonelinessBehaviour>();
             }

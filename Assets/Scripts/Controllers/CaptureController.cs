@@ -33,6 +33,7 @@ namespace SIMPS
                         if (!HasCaptured)
                         {
                             HasCaptured = true;
+                            prey.Protection.WasCaptured = true;
                         }
                     }
                 }
@@ -46,6 +47,9 @@ namespace SIMPS
                 if (HasCaptured)
                 {
                     HasCaptured = false;
+
+                    var prey = preyTransform.GetComponent<AgentController>();
+                    prey.Protection.WasCaptured = false;
                 }
             }
         }

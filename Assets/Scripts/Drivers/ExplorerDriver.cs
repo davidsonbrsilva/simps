@@ -47,6 +47,11 @@ namespace SIMPS {
 
         private void OnEnable()
         {
+            Restart();
+        }
+
+        public override void Restart()
+        {
             boredom = 0.01f;
         }
         #endregion

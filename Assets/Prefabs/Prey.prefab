@@ -403,7 +403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motivation: 0
-  activated: 0
   smoothTime: 1
   fatigue: 0.018453512
 --- !u!114 &2663186813164532611
@@ -419,7 +418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motivation: 0
-  activated: 0
   smoothTime: 1
   boredom: 0.01
 --- !u!114 &8961707277685885735
@@ -435,7 +433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motivation: 0
-  activated: 0
   smoothTime: 20
   fear: 0.01
 --- !u!114 &650053466950536115
@@ -451,7 +448,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motivation: 0
-  activated: 0
   loneliness: 0.5
   decSmooth: 10
   incSmooth: 10
@@ -492,7 +488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8196508ade5eea4dadcbbb35bb10592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  receptions: 0
   timeUntilNextAssociation: 2
   weakenSmooth: 0.00025
 --- !u!114 &2663186813505625223

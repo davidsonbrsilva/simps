@@ -15,6 +15,7 @@ namespace SIMPS
         #region Properties
         public bool ProtectedAgainstAerialPredator { get { return protectedAgainstAerialPredator; } set { protectedAgainstAerialPredator = value; } }
         public bool ProtectedAgainstLandPredator { get { return protectedAgainstLandPredator; } set { protectedAgainstLandPredator = value; } }
+        public bool WasCaptured { get; set; }
         #endregion
 
         #region UnityMethods

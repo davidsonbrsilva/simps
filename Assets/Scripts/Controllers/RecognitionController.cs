@@ -30,7 +30,7 @@ namespace SIMPS
         {
             Signals = new List<SignalController>();
             agent = transform.parent.parent.GetComponent<AgentController>();
-            spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
+            spawner = GameObject.FindWithTag("Core").GetComponent<Spawner>();
 
             HeardedAerialPredatorAt = 0f;
             HeardedLandPredatorAt = 0f;
