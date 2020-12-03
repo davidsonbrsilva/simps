@@ -1,5 +1,8 @@
-﻿namespace SIMPS
+﻿using System;
+
+namespace SIMPS
 {
+    [Serializable]
     public class Agent
     {
         public int id;

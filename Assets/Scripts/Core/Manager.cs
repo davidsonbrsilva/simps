@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SIMPS
 {
@@ -66,7 +67,7 @@ namespace SIMPS
         public bool Done { get; private set; }
         public bool AllDone { get; private set; }
         public float Runtime { get { return runtime; } private set { runtime = value; } }
-        public float TotalTime { get; private set; }
+        public int TotalTime { get; private set; }
         public int SimulationId { get { return id; } }
         public int Batch { get { return batch; } set { batch = value; } }
         public SimulationMode Mode { get { return mode; } }
@@ -116,7 +117,6 @@ namespace SIMPS
             // Se o tempo de execução da simulação atual terminou...
             if (runtime > TotalTime)
             {
-                Debug.Log("e");
                 Done = true;
                 id++;
 
@@ -145,7 +145,7 @@ namespace SIMPS
                     AllDone = true;
 
                     // Criar um controlador de scenes depois.
-                    //SceneManager.LoadScene("results");
+                    SceneManager.LoadScene("Results");
                 }
             }
         }

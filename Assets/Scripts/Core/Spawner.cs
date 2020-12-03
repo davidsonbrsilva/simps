@@ -149,6 +149,7 @@ namespace SIMPS
                     landPredator.Amount = data.landPredators;
                     aerialPredator.Amount = data.aerialPredators;
                     crowlingPredator.Amount = data.crowlingPredators;
+                    symbols = data.symbols;
                 }
             }
             catch (System.Exception e)

@@ -20,6 +20,7 @@ namespace SIMPS
             {
                 RestartPreys();
                 RestartPredators();
+                RestartScenario();
             }
         }
 
@@ -32,9 +33,17 @@ namespace SIMPS
                     prey.Explorer.Restart();
                 }
 
-                if (prey.Learner != null && !prey.Learner.enabled)
+                if (prey.Learner != null)
                 {
-                    prey.Learner.enabled = true;
+                    if (manager.CanLearn)
+                    {
+                        prey.Learner.enabled = true;
+                    }
+                    else
+                    {
+                        prey.Learner.enabled = false;
+                    }
+
                     prey.Learner.Restart();
                 }
 
@@ -56,6 +65,19 @@ namespace SIMPS
                 predator.transform.position = spawner.GetRandomOriginPosition();
 
                 TryRestartDrivers(predator);
+            }
+        }
+
+        private void RestartScenario()
+        {
+            foreach (var bush in spawner.Bushes)
+            {
+                bush.position = spawner.GetRandomOriginPosition();
+            }
+
+            foreach (var tree in spawner.Trees)
+            {
+                tree.position = spawner.GetRandomOriginPosition();
             }
         }
 

@@ -18,6 +18,7 @@ namespace SIMPS
         #region Properties
         public bool Converged { get; private set; }
         public bool Diverged { get; private set; }
+        public bool IsTotalConvergence { get; private set; }
         #endregion
 
         #region Unity Methods
@@ -43,27 +44,29 @@ namespace SIMPS
 
             if (manager.CanLearn)
             {
-                bool result = Check();
+                var result = CheckIfIsTotalConvergence();
 
-                if (result != converged)
+                if (result.Item1 != converged)
                 {
-                    if (result)
+                    if (result.Item1)
                     {
                         Converged = true;
+                        IsTotalConvergence = result.Item2;
                     }
                     else
                     {
                         Diverged = true;
+                        IsTotalConvergence = false;
                     }
 
-                    converged = result;
+                    converged = result.Item1;
                 }
             }
         }
         #endregion
 
         #region Component Methods
-        public bool Check()
+        public bool CheckIfConverged()
         {
             // Obtém referência para a primeira presa da lista de presas aprendizes.
             var firstPrey = spawner.PreyControllers[0].Learner;
@@ -94,6 +97,33 @@ namespace SIMPS
             }
 
             return true;
+        }
+
+        public (bool, bool) CheckIfIsTotalConvergence()
+        {
+            var converged = CheckIfConverged();
+            var isTotalConvergence = true;
+
+            if (converged)
+            {
+                var firstPrey = spawner.PreyControllers[0].Learner;
+
+                for (var i = 0; i < spawner.AllPredators.Count; ++i)
+                {
+                    for (var j = 0; j < spawner.AllPredators.Count; ++j)
+                    {
+                        if (i != j)
+                        {
+                            if (firstPrey.Knowledgement[i][0] == firstPrey.Knowledgement[j][0])
+                            {
+                                isTotalConvergence = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return (converged, isTotalConvergence);
         }
         #endregion
     }

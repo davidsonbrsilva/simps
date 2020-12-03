@@ -1,0 +1,15 @@
+{
+    "batch": 30,
+    "symbols": 10,
+    "preys": 6,
+    "landPredators": 1,
+    "aerialPredators": 1,
+    "crowlingPredators": 1,
+    "wallRatioSize": 0.8999999761581421,
+    "time": {
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 5
+    },
+    "mode": 0
+}

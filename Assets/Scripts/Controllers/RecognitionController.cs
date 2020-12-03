@@ -45,29 +45,44 @@ namespace SIMPS
 
                 if (signalCollided.Sender != transform.parent.parent.gameObject)
                 {
-                    Signals.Add(collision.GetComponent<SignalController>());
-                    var allRecognizedPredators = Recognize(signalCollided.Symbol);
+                    var signal = collision.GetComponent<SignalController>();
+                    bool contains = false;
 
-                    if (allRecognizedPredators.Count > 0)
+                    for (int s = 0; s < Signals.Count; ++s)
                     {
-                        var recognizedPredator = allRecognizedPredators[Random.Range(0, allRecognizedPredators.Count)];
-                        RecognizedPredator = spawner.AllPredators[recognizedPredator].GetComponent<AgentController>();
+                        if (Signals[s].Symbol == signal.Symbol)
+                        {
+                            contains = true;
+                            break;
+                        }
+                    }
 
-                        if (RecognizedPredator.IsAerialPredator)
-                        {
-                            HeardAerialPredator = true;
-                        }
-                        else if (RecognizedPredator.IsLandPredator)
-                        {
-                            HeardLandPredator = true;
-                        }
-                        else if (RecognizedPredator.IsCrowlingPredator)
-                        {
-                            HeardCrowlingPredator = true;
-                        }
+                    if (!contains)
+                    {
+                        Signals.Add(collision.GetComponent<SignalController>());
+                        var allRecognizedPredators = Recognize(signalCollided.Symbol);
 
-                        //Signal = signalCollided;
-                        //IsHearingSomething = true;
+                        if (allRecognizedPredators.Count > 0)
+                        {
+                            var recognizedPredator = allRecognizedPredators[Random.Range(0, allRecognizedPredators.Count)];
+                            RecognizedPredator = spawner.AllPredators[recognizedPredator].GetComponent<AgentController>();
+
+                            if (RecognizedPredator.IsAerialPredator)
+                            {
+                                HeardAerialPredator = true;
+                            }
+                            else if (RecognizedPredator.IsLandPredator)
+                            {
+                                HeardLandPredator = true;
+                            }
+                            else if (RecognizedPredator.IsCrowlingPredator)
+                            {
+                                HeardCrowlingPredator = true;
+                            }
+
+                            //Signal = signalCollided;
+                            //IsHearingSomething = true;
+                        }
                     }
                 }
             }

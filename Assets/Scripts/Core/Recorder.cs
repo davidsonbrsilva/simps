@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -20,6 +19,7 @@ namespace SIMPS
         private Spawner spawner;
         private Logger logger;
         private ConvergenceChecker checker;
+        private WallController wall;
         private float timer;
 
         private string rootPath = "Logs";
@@ -47,6 +47,7 @@ namespace SIMPS
             spawner = core.GetComponent<Spawner>();
             logger = core.GetComponent<Logger>();
             checker = core.GetComponent<ConvergenceChecker>();
+            wall = GameObject.FindWithTag("Wall").GetComponent<WallController>();
             timer = 0f;
         }
 
@@ -131,7 +132,7 @@ namespace SIMPS
             batchStart = Now;
             batchId = Convert.ToUInt64(DateTime.Now.ToString("yyyyMMddHHmmfff"));
             string batchFolder = string.Format("batch_{0}", batchId);
-            batchPath = CreatePath(rootPath, batchFolder);
+            batchPath = CreatePath(Application.dataPath + "/" + rootPath, batchFolder);
         }
 
         private void CreateBatchFiles()
@@ -156,7 +157,7 @@ namespace SIMPS
                 predators.Add(predator);
             }
 
-            Batch batch = new Batch(batchId, manager.Batch, manager.Mode, batchStart)
+            Batch batch = new Batch(batchId, manager.Batch, manager.Mode, wall.Ratio, manager.TotalTime, batchStart)
             {
                 preys = preys,
                 predators = predators
@@ -235,50 +236,55 @@ namespace SIMPS
             infoFile = string.Format("{0}/info.json", batchPath);
 
             Batch batch = MountBatch();
-            infoJson = JsonConvert.SerializeObject(batch, Formatting.Indented);
+            infoJson = JsonUtility.ToJson(batch, true);
+            //infoJson = JsonConvert.SerializeObject(batch, Formatting.Indented);
 
             CreateFile(infoFile, infoJson);
         }
 
         private void AddSimulationToInfoFile(Simulation simulation)
         {
-            var batch = JsonConvert.DeserializeObject<Batch>(infoJson);
+            //var batch = JsonConvert.DeserializeObject<Batch>(infoJson);
+            var batch = JsonUtility.FromJson<Batch>(infoJson);
             batch.simulations.Add(simulation);
-            infoJson = JsonConvert.SerializeObject(batch, Formatting.Indented);
+            infoJson = JsonUtility.ToJson(batch, true);
             UpdateFile(infoFile, infoJson);
         }
 
         private void AddBatchEndToInfoFile(string end)
         {
-            var batch = JsonConvert.DeserializeObject<Batch>(infoJson);
+            //var batch = JsonConvert.DeserializeObject<Batch>(infoJson);
+            var batch = JsonUtility.FromJson<Batch>(infoJson);
 
             batch.end = end;
 
-            infoJson = JsonConvert.SerializeObject(batch, Formatting.Indented);
+            infoJson = JsonUtility.ToJson(batch, true);
             UpdateFile(infoFile, infoJson);
         }
 
         private void AddSimulationEndToInfoFile(string end)
         {
-            var batch = JsonConvert.DeserializeObject<Batch>(infoJson);
+            var batch = JsonUtility.FromJson<Batch>(infoJson);
 
             var currentSimulation = batch.simulations[batch.simulations.Count - 1];
             currentSimulation.end = end;
             batch.simulations[batch.simulations.Count - 1] = currentSimulation;
 
-            infoJson = JsonConvert.SerializeObject(batch, Formatting.Indented);
+            infoJson = JsonUtility.ToJson(batch, true);
             UpdateFile(infoFile, infoJson);
         }
 
         private void UpdateConvergenceIntoInfoFile(string time)
         {
-            var batch = JsonConvert.DeserializeObject<Batch>(infoJson);
+            var batch = JsonUtility.FromJson<Batch>(infoJson);
 
             var currentSimulation = batch.simulations[batch.simulations.Count - 1];
             currentSimulation.convergedAt = time;
+            currentSimulation.convergedAtRuntime = manager.Runtime;
+            currentSimulation.isTotalConvergence = checker.IsTotalConvergence;
             batch.simulations[batch.simulations.Count - 1] = currentSimulation;
 
-            infoJson = JsonConvert.SerializeObject(batch, Formatting.Indented);
+            infoJson = JsonUtility.ToJson(batch, true);
             UpdateFile(infoFile, infoJson);
         }
         #endregion

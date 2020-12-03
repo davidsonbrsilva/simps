@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace SIMPS
 {
@@ -22,25 +20,29 @@ namespace SIMPS
 
         private void ReadOrCreate()
         {
-            string filename = "settings.json";
+            string filename = Application.dataPath + "/settings.json";
 
             if (!File.Exists(filename))
             {
                 File.Create(filename).Dispose();
 
-                Settings settings = new Settings(30, 6, 1, 1, 1, new Timer(2, 0, 0), SimulationMode.Alternating);
+                Settings settings = new Settings(30, 10, 6, 1, 1, 1, 0.9f, new Timer(2, 0, 0), SimulationMode.Alternating);
 
-                var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+                //var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+                var json = JsonUtility.ToJson(settings, true);
 
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
                     sw.Write(json);
                 }
             }
-            using (StreamReader sr = new StreamReader("settings.json"))
+
+            using (StreamReader sr = new StreamReader(filename))
             {
                 string json = sr.ReadToEnd();
-                Data = JsonConvert.DeserializeObject<Settings>(json);
+                //Data = JsonConvert.DeserializeObject<Settings>(json);
+                Data = JsonUtility.FromJson<Settings>(json);
+                Debug.Log(Data);
             }
         }
     }

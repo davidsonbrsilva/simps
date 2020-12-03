@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SIMPS
 {
+    [Serializable]
     public struct Simulation
     {
         public ulong id;
@@ -11,8 +11,10 @@ namespace SIMPS
         public string end;
         public bool hasLearning;
         public string convergedAt;
+        public float convergedAtRuntime;
+        public bool isTotalConvergence;
 
-        public Simulation(ulong id, string path, bool hasLearning, string start, string end = null, string convergedAt = null)
+        public Simulation(ulong id, string path, bool hasLearning, string start, string end = null, string convergedAt = null, float convergedAtRuntime = -1, bool isTotalConvergence = false)
         {
             this.id = id;
             this.path = path;
@@ -20,6 +22,8 @@ namespace SIMPS
             this.start = start;
             this.end = end;
             this.convergedAt = convergedAt;
+            this.convergedAtRuntime = convergedAtRuntime;
+            this.isTotalConvergence = isTotalConvergence;
         }
     }
 }

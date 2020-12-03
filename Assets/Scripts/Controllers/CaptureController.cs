@@ -49,7 +49,7 @@ namespace SIMPS
                     HasCaptured = false;
 
                     var prey = preyTransform.GetComponent<AgentController>();
-                    prey.Protection.WasCaptured = false;
+                    //prey.Protection.WasCaptured = false;
                 }
             }
         }
