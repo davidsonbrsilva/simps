@@ -108,16 +108,13 @@ namespace SIMPS
             {
                 var firstPrey = spawner.PreyControllers[0].Learner;
 
-                for (var i = 0; i < spawner.AllPredators.Count; ++i)
+                for (var i = 0; i < spawner.AllPredators.Count - 1; ++i)
                 {
-                    for (var j = 0; j < spawner.AllPredators.Count; ++j)
+                    for (var j = i + 1; j < spawner.AllPredators.Count; ++j)
                     {
-                        if (i != j)
+                        if (firstPrey.Knowledgement[i][0] == firstPrey.Knowledgement[j][0])
                         {
-                            if (firstPrey.Knowledgement[i][0] == firstPrey.Knowledgement[j][0])
-                            {
-                                isTotalConvergence = false;
-                            }
+                            isTotalConvergence = false;
                         }
                     }
                 }

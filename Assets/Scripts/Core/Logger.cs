@@ -40,11 +40,11 @@ namespace SIMPS
             LearningHeader += "\n";
         }
 
-        private void Update()
+        /*private void Update()
         {
             foreach (var prey in spawner.PreyControllers)
             {
-                if (prey.Learner.Learned)
+                if (manager.CanLearn && prey.Learner.Learned)
                 {
                     AppendLearning(prey);
                 }
@@ -54,9 +54,9 @@ namespace SIMPS
                     AppendDeaths(prey);
                 }
             }
-        }
+        }*/
 
-        private void AppendLearning(AgentController agent)
+        public void AppendLearning(AgentController agent)
         {
             foreach (var association in agent.Learner.LastAssociations)
             {
@@ -74,15 +74,13 @@ namespace SIMPS
                     }
                 }
 
-                LearningHeader += "\n";
-
                 string record = string.Format("{0};{1};{2};{3};{4};{5}\n", Runtime, agent.ShortName, symbol, predatorController.ShortName, value, associations);
 
                 Learning.Add(record);
             }
         }
 
-        private void AppendDeaths(AgentController agent)
+        public void AppendDeaths(AgentController agent)
         {
             string record = string.Format("{0};{1}\n", Runtime, agent.ShortName);
             Deaths.Add(record);

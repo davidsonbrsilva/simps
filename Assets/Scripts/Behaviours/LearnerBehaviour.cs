@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SIMPS
@@ -13,6 +13,8 @@ namespace SIMPS
 
         private Spawner spawner;
         private AgentController agent;
+        private int frameCounter;
+        private Logger logger;
 
         public float[,] AssociationMemory { get; private set; }
         public float[,] Inibition { get; private set; }
@@ -22,9 +24,12 @@ namespace SIMPS
 
         private void Awake()
         {
-            spawner = GameObject.FindWithTag("Core").GetComponent<Spawner>();
+            var core = GameObject.FindWithTag("Core");
+            spawner = core.GetComponent<Spawner>();
+            logger = core.GetComponent<Logger>();
             agent = GetComponent<AgentController>();
             LastAssociations = new List<Association>();
+            frameCounter = 0;
         }
 
         private void Start()
@@ -66,9 +71,13 @@ namespace SIMPS
                         spawner.AllPredators.IndexOf(agent.Vision.AllPredators[predator])
                     );
                     LastAssociations.Add(association);
-
                     Reinforce(association.Symbol, association.Predator);
                 }
+            }
+
+            if (Learned)
+            {
+                logger.AppendLearning(agent);
             }
 
             for (int symbol = 0; symbol < spawner.Symbols; ++symbol)
@@ -78,6 +87,11 @@ namespace SIMPS
                     Weaken(symbol, predator);
                 }
             }
+
+            /*if (Learned)
+            {
+                frameCounter = 1;
+            }*/
         }
 
         public void InitLearning()
@@ -226,6 +240,7 @@ namespace SIMPS
         {
             InitLearning();
             InitKnowledgement();
+            Learned = false;
         }
     }
 }

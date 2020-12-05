@@ -55,7 +55,11 @@ namespace SIMPS
             if (frameCounter > 0)
             {
                 frameCounter--;
-                WasCaptured = false;
+
+                if (frameCounter == 0)
+                {
+                    WasCaptured = false;
+                }
             }
 
             if (WasCaptured)

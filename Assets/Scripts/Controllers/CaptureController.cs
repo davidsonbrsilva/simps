@@ -10,10 +10,12 @@ namespace SIMPS
 
         private Transform preyTransform;
         private AgentController thisAgent;
+        private Logger logger;
 
         private void Awake()
         {
             thisAgent = transform.parent.parent.GetComponent<AgentController>();
+            logger = GameObject.FindWithTag("Core").GetComponent<Logger>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -34,6 +36,7 @@ namespace SIMPS
                         {
                             HasCaptured = true;
                             prey.Protection.WasCaptured = true;
+                            logger.AppendDeaths(prey);
                         }
                     }
                 }

@@ -29,6 +29,7 @@ namespace SIMPS
         public ProtectionController Protection { get; private set; }
         public RecognitionController Hearing { get; private set; }
         public ActionRadiusController ActionRadius { get; private set; }
+        public Animator Animator { get; private set; }
 
         public void Awake()
         {
@@ -84,6 +85,8 @@ namespace SIMPS
                 Explorer = GetComponent<ExplorerBehaviour>();
                 Hunter = GetComponent<HunterBehaviour>();
             }
+
+            Animator = GetComponent<Animator>();
         }
 
         private void Update()
