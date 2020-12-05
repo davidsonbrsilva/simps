@@ -5,11 +5,11 @@
     "landPredators": 1,
     "aerialPredators": 1,
     "crowlingPredators": 1,
-    "wallRatioSize": 0.8999999761581421,
+    "wallRatioSize": 0.9,
     "time": {
         "hours": 0,
         "minutes": 0,
-        "seconds": 5
+        "seconds": 30
     },
-    "mode": 0
+    "mode": 2
 }

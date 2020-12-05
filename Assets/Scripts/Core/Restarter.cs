@@ -6,12 +6,14 @@ namespace SIMPS
     {
         private Manager manager;
         private Spawner spawner;
+        private Logger logger;
 
         private void Awake()
         {
             var core = GameObject.FindWithTag("Core");
             manager = core.GetComponent<Manager>();
             spawner = core.GetComponent<Spawner>();
+            logger = core.GetComponent<Logger>();
         }
 
         void Update()

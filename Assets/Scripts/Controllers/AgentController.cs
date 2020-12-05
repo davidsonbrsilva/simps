@@ -6,6 +6,8 @@ namespace SIMPS
     {
         [SerializeField] private string _name;
 
+        private Manager manager;
+
         public string Name { get { return _name; } set { _name = value; } }
         public string ShortName { get; set; }
 
@@ -42,6 +44,7 @@ namespace SIMPS
             Transform agentVision = transform.Find("Rotatable").Find("Vision");
             Transform agentMarker = transform.Find("Rotatable").Find("Marker");
             Transform agentActionRadius = transform.Find("Action Radius");
+            manager = GameObject.FindWithTag("Core").GetComponent<Manager>();
 
             if (agentMarker.CompareTag("Prey"))
             {
@@ -109,6 +112,11 @@ namespace SIMPS
         public void Reborn()
         {
             ChangeSimpsBehavioursTo(true);
+
+            if (!manager.CanLearn)
+            {
+                Learner.enabled = false;
+            }
         }
 
         public void ChangeSimpsBehavioursTo(bool enabled)
