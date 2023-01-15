@@ -4,47 +4,47 @@
 
 [![Captura de tela do funcionamento do Simps](cover.png)](https://www.youtube.com/watch?v=HeeFFVe0gBA)
 
-**Simps** (pronuncia-se `/sɪmps/`) é um simulador de processos semióticos escrito em C# que utiliza [Unity](https://unity3d.com) como motor de desenvolvimento. Este projeto foi parte da linha de pesquisa _Modelagem e Simulação Multiagente de Processos Semióticos: semântica artificial_ desenvolvida pelo Grupo de Estudos em Linguagem, Cognição e Computação (LC2) da [Universidade Federal dos Vales do Jequitinhonha e Mucuri](http://www.ufvjm.edu.br).
+[[Ver em Português](README.pt-br.md)]
 
-Simps é um projeto de inteligência artificial inspirado no caso etológico dos macacos _vervets_ proposto por [Loula et. al. (2004)](https://www.dca.fee.unicamp.br/~gudwin/ftp/publications/TeseLoula.pdf) em que presas e predadores coexistem em um ambiente virtual e interagem entre si através de processos básicos como memória associativa, percepção e foco de atenção. Às presas é fornecido um conjunto de palavras (léxicos) para informarem sobre eventos ocorridos como, por exemplo, ver um predador. A informação é disparada ao ambiente e pode ser percebida por outras presas por meio de seus sensores de audição, que reagirão conforme a interpretação obtida pelo seu processamento. Ao final, um léxico comum se constrói de tais interações e, se bem utilizado, oferece vantagens de sobrevivência às presas. Dizemos, neste caso, que as presas aprenderam a se comunicar por meio de uma _linguagem emergente_.
+**Simps** (pronouced `/sɪmps/`) is a semiotic process simulator writted in C# that uses [Unity](https://unity3d.com) as development engine. This project was part of _Modelagem e Simulação Multiagente de Processos Semióticos: semântica artificial_ research line, developed by Study Group on Language, Cognition and Computation (LC2) of [Federal University of the Jequitinhonha and Mucuri Valleys](http://www.ufvjm.edu.br).
 
-Para mais detalhes do projeto, consulte o [Trabalho de Conclusão de Curso](https://drive.google.com/file/d/1RpTITqPAhEirOiVWzSS7sNMw1LzWqGAu/view?usp=sharing) (somente em português) do autor.
+Simps is an artificial intelligence inspired on the ethologic case of _vervets_ monkeys purposed by [Loula et. al. (2004)](https://www.dca.fee.unicamp.br/~gudwin/ftp/publications/TeseLoula.pdf) in which prey and predators coexist in a virtual environment and interact with each other through basic processes such as associative memory, perception and focus of attention. Prey are provided with a set of words (lexicons) to report on events that have occurred, such as seeing a predator. The information is fired into the environment and can be perceived by other prey through their hearing sensors, which will react according to the interpretation obtained by their processing. In the end, a common lexicon is built from such interactions and, if well used, offers prey survival advantages. In this case, we say that the prey have learned to communicate through an _emerging language_.
 
-## Começando
+For more project details, see the [final paper](https://drive.google.com/file/d/1RpTITqPAhEirOiVWzSS7sNMw1LzWqGAu/view?usp=sharing) (only in Portuguese) of the authors.
 
-As instruções a seguir mostram como você pode obter uma cópia deste projeto e rodá-lo em sua máquina local para propósitos de desenvolvimento e testes.
+## Getting started
 
-### Pré-requisitos
+The follow instructions show how you can get a copy of this project and run it on your local machine for development and tests purposes.
 
-
+### Requirements
 
 - [Unity 2020.1.15f1](https://unity.com/releases/editor/archive)
-- IDE de apoio, como [Visual Studio](https://www.visualstudio.com/pt-br/downloads/) ou [MonoDevelop](http://www.monodevelop.com/download/)
+- Support IDE as [Visual Studio](https://www.visualstudio.com/pt-br/downloads/) or [MonoDevelop](http://www.monodevelop.com/download/)
   
-> Para o Visual Studio, é necessário habilitar o suporte ao Unity nos itens de instalação.
+> For Visual Studio, is necessary enable Unity support on installation items.
 
-### Instalação
+### Install
 
-Faça o clone do repositório:
+Clone the repository:
 
 ```
 $ git clone https://github.com/davidsonbrsilva/simps.git
 ```
 
-### Instruções de uso
+### Usage instructions
 
 Para executar simulações no Simps:
 
 1. Navegue até `project/Assets/Scenes` e abra o arquivo `simulator.unity`. Você pode mudar as configurações padrão das simulações alterando as propriedades do objeto `Core` da aba `Hierarchy` através do `Inspector`.
 2. Clique em `Play`.
 
-## Autores
+## Authors
 
 - Davidson Bruno da Silva <<davidsonbruno@outlook.com>>
 - Leonardo Lana de Carvalho <<lanadecarvalholeonardo@gmail.com>>
 
-Agradecimento especial a [Tiago Ferreira Campos](https://github.com/caotic123) e [Lucas Vieira Souza](https://github.com/luksamuk) por acompanharem todo o processo de desenvolvimento, contribuirem com dicas e disporem de tempo para nos ajudar pessoalmente.
+Special knowledgement to [Tiago Ferreira Campos](https://github.com/caotic123) and [Lucas Vieira Souza](https://github.com/luksamuk) for accompanying the entire development process, contributing with tips and take the time to help us personally.
 
-## Licença
+## License
 
 [MIT](LICENSE.md) Copyright (c) 2020, Davidson Bruno.
