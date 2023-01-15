@@ -33,10 +33,10 @@ $ git clone https://github.com/davidsonbrsilva/simps.git
 
 ### Usage instructions
 
-Para executar simulações no Simps:
+To run simulations on Simps:
 
-1. Navegue até `project/Assets/Scenes` e abra o arquivo `simulator.unity`. Você pode mudar as configurações padrão das simulações alterando as propriedades do objeto `Core` da aba `Hierarchy` através do `Inspector`.
-2. Clique em `Play`.
+1. Browse to `project/Assets/Scenes` folder and open the file `simulator.unity`. You can change the default simulation settings modifying the properties of `Core` object of `Hierarchy` tab through `Inspector`.
+2. Click on `Play`.
 
 ## Authors
 
