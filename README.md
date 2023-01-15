@@ -1,8 +1,8 @@
 # Simps
 
-[comment]: # "Badges here"
+![License](https://img.shields.io/github/license/davidsonbsilva/aquascript.svg) ![Status](https://img.shields.io/badge/status-stopped-red)
 
-[![Descrição](https://img.youtube.com/vi/HeeFFVe0gBA/0.jpg)](https://www.youtube.com/watch?v=HeeFFVe0gBA)
+[![Captura de tela do funcionamento do Simps](cover.png)](https://www.youtube.com/watch?v=HeeFFVe0gBA)
 
 **Simps** (pronuncia-se `/sɪmps/`) é um simulador de processos semióticos escrito em C# que utiliza [Unity](https://unity3d.com) como motor de desenvolvimento. Este projeto foi parte da linha de pesquisa _Modelagem e Simulação Multiagente de Processos Semióticos: semântica artificial_ desenvolvida pelo Grupo de Estudos em Linguagem, Cognição e Computação (LC2) da [Universidade Federal dos Vales do Jequitinhonha e Mucuri](http://www.ufvjm.edu.br).
 
