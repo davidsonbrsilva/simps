@@ -1,6 +1,6 @@
 # Simps
 
-![License](https://img.shields.io/github/license/davidsonbsilva/aquascript.svg) ![Status](https://img.shields.io/badge/status-stopped-red)
+![License](https://img.shields.io/github/license/davidsonbsilva/simps.svg) ![Status](https://img.shields.io/badge/status-stopped-red)
 
 [![Captura de tela do funcionamento do Simps](cover.png)](https://www.youtube.com/watch?v=HeeFFVe0gBA)
 
@@ -47,4 +47,4 @@ Special knowledgement to [Tiago Ferreira Campos](https://github.com/caotic123) a
 
 ## License
 
-[MIT](LICENSE.md) Copyright (c) 2020, Davidson Bruno.
+[MIT](LICENSE) Copyright (c) 2020, Davidson Bruno.
