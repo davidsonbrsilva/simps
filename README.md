@@ -1,8 +1,8 @@
 # Simps
 
-![License](https://img.shields.io/github/license/davidsonbsilva/simps.svg) ![Status](https://img.shields.io/badge/status-stopped-red)
+![License](https://img.shields.io/github/license/davidsonbrsilva/simps.svg) ![Status](https://img.shields.io/badge/status-stopped-red)
 
-[![Captura de tela do funcionamento do Simps](cover.png)](https://www.youtube.com/watch?v=HeeFFVe0gBA)
+[![Screenshot of Simps operation](cover.png)](https://www.youtube.com/watch?v=HeeFFVe0gBA)
 
 [[Ver em Português](README.pt-br.md)]
 
@@ -10,7 +10,7 @@
 
 Simps is an artificial intelligence inspired on the ethologic case of _vervets_ monkeys purposed by [Loula et. al. (2004)](https://www.dca.fee.unicamp.br/~gudwin/ftp/publications/TeseLoula.pdf) in which prey and predators coexist in a virtual environment and interact with each other through basic processes such as associative memory, perception and focus of attention. Prey are provided with a set of words (lexicons) to report on events that have occurred, such as seeing a predator. The information is fired into the environment and can be perceived by other prey through their hearing sensors, which will react according to the interpretation obtained by their processing. In the end, a common lexicon is built from such interactions and, if well used, offers prey survival advantages. In this case, we say that the prey have learned to communicate through an _emerging language_.
 
-For more project details, see the [final paper](https://drive.google.com/file/d/1RpTITqPAhEirOiVWzSS7sNMw1LzWqGAu/view?usp=sharing) (only in Portuguese) of the authors.
+For more project details, see the [paper](https://drive.google.com/file/d/1RpTITqPAhEirOiVWzSS7sNMw1LzWqGAu/view?usp=sharing) (only in Portuguese) of the authors.
 
 ## Getting started
 
