@@ -43,7 +43,7 @@ To run simulations on Simps:
 - Davidson Bruno da Silva <<davidsonbruno@outlook.com>>
 - Leonardo Lana de Carvalho <<lanadecarvalholeonardo@gmail.com>>
 
-Special knowledgement to [Tiago Ferreira Campos](https://github.com/caotic123) and [Lucas Vieira Souza](https://github.com/luksamuk) for accompanying the entire development process, contributing with tips and taking the time to help us personally.
+Special thanks to [Tiago Ferreira Campos](https://github.com/caotic123) and [Lucas Vieira Souza](https://github.com/luksamuk) for accompanying the entire development process, contributing with tips and taking the time to help us personally.
 
 ## License
 
