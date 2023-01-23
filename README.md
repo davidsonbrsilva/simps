@@ -1,6 +1,6 @@
 # Simps
 
-![License](https://img.shields.io/github/license/davidsonbrsilva/simps.svg) ![Status](https://img.shields.io/badge/status-stopped-red)
+![License](https://img.shields.io/github/license/davidsonbrsilva/simps.svg) ![Code Size](https://img.shields.io/github/languages/code-size/davidsonbrsilva/simps) ![Status](https://img.shields.io/badge/status-stopped-red)
 
 [![Screenshot of Simps operation](cover.png)](https://www.youtube.com/watch?v=HeeFFVe0gBA)
 
